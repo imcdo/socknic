@@ -9,10 +9,9 @@ public class RhythmManager : Singleton<RhythmManager>
     public GameObject notePrefab;
     
     // Seconds
-    public float introDelay = 3.0f;
-    public float outroDelay = 5.0f;
+    public float introDelay;
     // Time between spawn and getting to the target
-    public float dropTime = 1.0f;
+    public float dropTime;
     
     public SongConfig currentSong;
     public AudioSource musicSource;
@@ -54,16 +53,10 @@ public class RhythmManager : Singleton<RhythmManager>
         beatInterval = 60 / (float) currentSong.bpm;
         musicSource.clip = currentSong.song;
         
-        StartCoroutine(IntroSong());
+        PlaySong();
         
     }
-
-    IEnumerator IntroSong()
-    {
-        yield return new WaitForSeconds(introDelay);
-        PlaySong();
-    }
-
+    
     private void PlaySong()
     {
         
