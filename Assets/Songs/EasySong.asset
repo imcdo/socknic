@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b319308df2ae60e4fbc9d9272426d83f, type: 3}
-  m_Name: Bijou Rayonnant
+  m_Name: EasySong
   m_EditorClassIdentifier: 
   bpm: 60
   approachRate: 2
