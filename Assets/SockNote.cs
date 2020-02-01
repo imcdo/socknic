@@ -16,9 +16,13 @@ public class SockNote : MonoBehaviour
 
     private AudioSource hitSource;
     private bool _played = false;
+    private SpriteRenderer[] _renderers;
+    [SerializeField] private AnimationCurve noteFalloffCurve;
     void Start()
     {
         hitSource = GetComponent<AudioSource>();
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
+
     }
     void Update()
     {
@@ -34,8 +38,10 @@ public class SockNote : MonoBehaviour
             _played = true;
             GetComponent<SpriteRenderer>().color = Color.red;
         }
-            
 
+        float tDeath = Mathf.Max(((float) AudioSettings.dspTime - targetDsp) / (killDsp - targetDsp), 0);
+        foreach (var sr in _renderers)
+            sr.color = sr.color * noteFalloffCurve.Evaluate(1 - tDeath);
 
         // TODO Remove, debug code
         if (AudioSettings.dspTime >= killDsp)
