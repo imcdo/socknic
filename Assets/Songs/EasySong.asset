@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b319308df2ae60e4fbc9d9272426d83f, type: 3}
+  m_Name: EasySong
+  m_EditorClassIdentifier: 
+  bpm: 60
+  approachRate: 2
+  hp: 0
+  song: {fileID: 8300000, guid: d4e71b20b1e9bfa478f1b6ef003da743, type: 3}
+  songText: {fileID: 4900000, guid: bcfafad095a24094bb598e63022c288b, type: 3}

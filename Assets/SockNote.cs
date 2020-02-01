@@ -32,7 +32,6 @@ public class SockNote : MonoBehaviour
         {
             hitSource.Play();
             _played = true;
-            GetComponent<SpriteRenderer>().color = Color.red;
         }
             
 
