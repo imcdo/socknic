@@ -11,6 +11,7 @@ public class SongProfiler : MonoBehaviour
         public float noteTime;
         public float xPosition;
         public bool jump;
+        public bool player1;
     }
 
     private List<Note> _song;
@@ -29,7 +30,8 @@ public class SongProfiler : MonoBehaviour
             Note note = new Note();
             if (!float.TryParse(tokens[0], out note.noteTime) 
                 || !float.TryParse(tokens[1], out note.xPosition)
-                || !bool.TryParse(tokens[2], out note.jump))
+                || !bool.TryParse(tokens[2], out note.jump)
+                || !bool.TryParse(tokens[3], out note.player1))
             {
                 Debug.LogWarning("Missparse :'(");
                 continue;

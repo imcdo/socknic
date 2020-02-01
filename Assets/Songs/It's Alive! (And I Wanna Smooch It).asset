@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: It's Alive! (And I Wanna Smooch It)
   m_EditorClassIdentifier: 
   bpm: 144
-  approachRate: 0
+  approachRate: 3
   hp: 0
   song: {fileID: 8300000, guid: 72499bb609b8927408cec37708a27dad, type: 3}
+  songText: {fileID: 4900000, guid: ba7efeae0c339364897246b8aec8dbf8, type: 3}

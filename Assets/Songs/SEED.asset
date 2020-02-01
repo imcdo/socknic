@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SEED
   m_EditorClassIdentifier: 
   bpm: 108
-  approachRate: 0
+  approachRate: 0.5
   hp: 0
   song: {fileID: 8300000, guid: 1f4f88e82df18aa4db0decf5ec64b995, type: 3}
+  songText: {fileID: 0}
