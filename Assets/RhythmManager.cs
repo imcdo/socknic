@@ -57,25 +57,22 @@ public class RhythmManager : MonoBehaviour
         if (_instance != null) Destroy(gameObject);
         _instance = this;
         _songProfiler = GetComponent<SongProfiler>();
+        
+        spawnY = spawn.transform.position.y;
+        targetY = target.transform.position.y;
+        killY = kill.transform.position.y;
+        jumpY = jump.transform.position.y;
 
+        // Get info about the note spawn/target
+        spawnToTargetDistance = Mathf.Abs(targetY - spawnY);
+        spawnToKillDistance = Mathf.Abs(killY - spawnY);
+        spawnToJumpDistance = Mathf.Abs(jumpY - spawnY);
     }
     
     
     void Start()
     {
-        // Get info about the note spawn/target
-        spawnY = spawn.transform.position.y;
-        targetY = target.transform.position.y;
-        killY = kill.transform.position.y;
-        jumpY = jump.transform.position.y;
-        
-        spawnToTargetDistance = Mathf.Abs(targetY - spawnY);
-        spawnToKillDistance = Mathf.Abs(killY - spawnY);
-        spawnToJumpDistance = Mathf.Abs(jumpY - spawnY);
-        
         if (currentSong != null) _songProfiler.Parse(currentSong.songText);
-
-
     }
     
     public void SetSong(SongConfig songConfig)
