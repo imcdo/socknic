@@ -155,6 +155,11 @@ public class RhythmManager : MonoBehaviour
                 note.targetDsp = nextBeatSpawnTime + GetHitTime(_currNote);
                 note.killDsp = nextBeatSpawnTime + killTime;
                 
+                // Get the right socks to show and sets owner
+                Sock sock = SockManager.Instance.GetRandomReadySock();
+                note.SetSock(sock);
+                note.owner = _currNote.player;
+
                 _noteI++;
                 if (_noteI < _songProfiler.Song.Count) nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);
                 else

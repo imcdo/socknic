@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     float bpm = 40f; //RhythmManager.Instance.currentSong.bpm;
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
-    public int m_PlayerNumber = 1; 
+    public SongProfiler.PlayerNumber playerNumber; 
     Vector2 m_MovementInput;
     public float m_movespeed = 10f;
     bool jumping;

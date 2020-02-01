@@ -10,12 +10,19 @@ public class SockNote : MonoBehaviour
     public float targetDsp;
     public float killDsp;
 
+    public GameObject sockAppearance;
+
     [Header("Donut touch")]
     public float t;
     public float y;
 
     private AudioSource hitSource;
     private bool _played = false;
+
+    public Sock sock;
+
+    public SongProfiler.PlayerNumber owner;
+    
     void Start()
     {
         hitSource = GetComponent<AudioSource>();
@@ -27,8 +34,13 @@ public class SockNote : MonoBehaviour
         y = Mathf.Lerp(RhythmManager.Instance.spawnY,RhythmManager.Instance.killY, t);
         
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    }
 
-        
+    public void SetSock(Sock givenSock)
+    {
+        sock = givenSock;
+        sockAppearance.GetComponent<SpriteRenderer>().sprite = sock.sprite;
+
     }
 
     // Call when this Note is hit by a player

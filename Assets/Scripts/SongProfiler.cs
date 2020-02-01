@@ -7,14 +7,14 @@ using UnityEngine;
 public class SongProfiler : MonoBehaviour
 {
     public enum NotePosition : byte {Ground, Jump}
-    public enum NoteType : byte {Player1, Player2, Duo}
+    public enum PlayerNumber : byte {Player1, Player2, Duo}
     
     public struct Note
     {
         public float noteTime;
         public float xPosition;
         public NotePosition jump;
-        public NoteType player1;
+        public PlayerNumber player;
     }
 
     private List<Note> _song;
@@ -34,7 +34,7 @@ public class SongProfiler : MonoBehaviour
             if (!float.TryParse(tokens[0], out note.noteTime) 
                 || !float.TryParse(tokens[1], out note.xPosition)
                 || !Enum.TryParse(tokens[2], out note.jump)
-                || !Enum.TryParse(tokens[3], out note.player1))
+                || !Enum.TryParse(tokens[3], out note.player))
             {
                 Debug.LogWarning("Missparse :'(");
                 continue;

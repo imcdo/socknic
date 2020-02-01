@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SockManager : MonoBehaviour
+public class SockManager : Singleton<SockManager>
 {
     public List<Sock> sockCatalog;
-
-    private List<Sock> availableSocks;
+    
+    [Header("Donut touch")]
+    // Socks that have not been recently used
+    public List<Sock> availableSocks;
+    
 
     // Refill availableSocks with all the possible socks
-    public void ReadyAllSocks()
+    private void ReadyAllSocks()
     {
         availableSocks.Clear();
         availableSocks.AddRange(sockCatalog);
@@ -23,19 +26,10 @@ public class SockManager : MonoBehaviour
             ReadyAllSocks();
         }
         
-        int randomSockIdx = Random.Range(0, availableSocks.Count);
+        int randomSockIdx = Random.Range(0, availableSocks.Count - 1);
         Sock sock = availableSocks[randomSockIdx];
         availableSocks.Remove(sock);
 
         return sock;
     }
-}
-
-[System.Serializable]
-
-[CreateAssetMenu(fileName = "song config", menuName = "socknic/Sock")]
-public class Sock : ScriptableObject
-{
-    public string id;
-    public Sprite sprite;
 }
