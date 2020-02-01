@@ -14,7 +14,8 @@ public class RhythmManager : MonoBehaviour
     public GameObject approachCirclePrefab;
     public GameObject xIndicatorPrefab;
     
-    
+    private float _lastTime;
+    public float deltaTime => (float)AudioSettings.dspTime - _lastTime;
     // Seconds
     public float introDelay;
     // Time between spawn and getting to the target
@@ -163,5 +164,7 @@ public class RhythmManager : MonoBehaviour
                 }
             } 
         }
+
+        _lastTime = (float)AudioSettings.dspTime;
     }
 }
