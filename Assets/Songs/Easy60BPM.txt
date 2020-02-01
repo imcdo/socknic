@@ -1,0 +1,11 @@
+5 -1 Ground Player1
+
+8 1 Ground Player2
+
+11 -1 Ground Player1
+
+14 1 Ground Player2
+
+17 -1 Ground Player1
+
+20 1 Ground Player2

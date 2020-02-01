@@ -36,7 +36,6 @@ public class SockNote : MonoBehaviour
         {
             hitSource.Play();
             _played = true;
-            GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         float tDeath = Mathf.Max(((float) AudioSettings.dspTime - targetDsp) / (killDsp - targetDsp), 0);
