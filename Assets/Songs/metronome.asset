@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b319308df2ae60e4fbc9d9272426d83f, type: 3}
-  m_Name: It's Alive! (And I Wanna Smooch It)
+  m_Name: metronome
   m_EditorClassIdentifier: 
-  bpm: 144
+  bpm: 168
   approachRate: 3
   hp: 0
-  song: {fileID: 8300000, guid: 72499bb609b8927408cec37708a27dad, type: 3}
-  songText: {fileID: 4900000, guid: ba7efeae0c339364897246b8aec8dbf8, type: 3}
+  song: {fileID: 8300000, guid: 07671e067405874409d89fdcf81792ca, type: 3}
+  songText: {fileID: 4900000, guid: d3010894e0147b34db62f562825b1803, type: 3}

@@ -1,6 +1,7 @@
 ﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+    using UnityEngine.Serialization;
     using Note = SongProfiler.Note;
 
 // TODO Could make this let people register to UnityEvents that return information about beats for portability but I'm lazy (~:
@@ -10,24 +11,25 @@ public class RhythmManager : MonoBehaviour
     public static RhythmManager Instance => _instance;
     
     public GameObject notePrefab;
+    public GameObject approachCirclePrefab;
+    public GameObject xIndicatorPrefab;
+    
     
     // Seconds
     public float introDelay;
     // Time between spawn and getting to the target
    
     // TODO: acount for jump
-    public float dropTime  =>  spawnToTargetDistance / currentSong.approachRate;
     public float killTime  =>  spawnToKillDistance / currentSong.approachRate;
     
     public SongConfig currentSong;
     public AudioSource musicSource;
 
-    public AudioSource hitSource;
-    
     // Marker and target (Only uses Y)
     public GameObject spawn;
     public GameObject target;
     public GameObject kill;
+    public GameObject jump;
     
     
     [Header("Donut touch")]
@@ -40,13 +42,15 @@ public class RhythmManager : MonoBehaviour
     public float audioStartTime;
     private float spawnToTargetDistance;
     private float spawnToKillDistance;
+    private float spawnToJumpDistance;
     public float spawnY { get; private set; }
     public float targetY { get; private set; }
     public float killY { get; private set; }
+    public float jumpY { get; private set; }
 
     private SongProfiler _songProfiler;
     private int _noteI;
-    private Note _currNote => _songProfiler.Song[_noteI];
+        private Note _currNote => _songProfiler.Song[_noteI];
     void Awake()
     {
         if (_instance != null) Destroy(gameObject);
@@ -62,8 +66,11 @@ public class RhythmManager : MonoBehaviour
         spawnY = spawn.transform.position.y;
         targetY = target.transform.position.y;
         killY = kill.transform.position.y;
+        jumpY = jump.transform.position.y;
+        
         spawnToTargetDistance = Mathf.Abs(targetY - spawnY);
         spawnToKillDistance = Mathf.Abs(killY - spawnY);
+        spawnToJumpDistance = Mathf.Abs(jumpY - spawnY);
         
         if (currentSong != null) _songProfiler.Parse(currentSong.songText);
 
@@ -97,9 +104,11 @@ public class RhythmManager : MonoBehaviour
         _noteI = 0;
         
         audioStartTime = (float) AudioSettings.dspTime;
-
+        
+        Debug.Log(_songProfiler.Song.Count);
+        
         // Time the next beat should hit the target
-        nextBeatSpawnTime = audioStartTime - dropTime + _currNote.noteTime;
+        nextBeatSpawnTime = audioStartTime - GetHitTime(_currNote) + _currNote.noteTime;
         if (nextBeatSpawnTime < audioStartTime) Debug.LogWarning("first beat before song");
         // Fixes spawn to skip first beat if it's supposed to spawn before the song starts
 //        while (nextBeatSpawnTime < audioStartTime)
@@ -110,6 +119,13 @@ public class RhythmManager : MonoBehaviour
         musicSource.Play();
     }
 
+    private float GetHitTime(Note note)
+    {
+        if (note.jump == SongProfiler.NotePosition.Jump)
+            return spawnToJumpDistance / currentSong.approachRate;
+        return spawnToTargetDistance / currentSong.approachRate;
+    }
+    
     void Update()
     {
         
@@ -118,16 +134,33 @@ public class RhythmManager : MonoBehaviour
             float currentDspTime = (float) AudioSettings.dspTime;
             
             // Time to spawn a note!
-            if (currentDspTime >= nextBeatSpawnTime)
+            while (currentDspTime >= nextBeatSpawnTime && _noteI < _songProfiler.Song.Count)
             {
-                GameObject noteObj = Instantiate(notePrefab, new Vector2(_currNote.xPosition,0), Quaternion.identity, spawn.transform);
+                GameObject noteObj = Instantiate(notePrefab, new Vector2(_currNote.xPosition,spawnY), Quaternion.identity, spawn.transform);
+                GameObject approachCircleObj = Instantiate(approachCirclePrefab, 
+                    new Vector2(_currNote.xPosition, (_currNote.jump == SongProfiler.NotePosition.Jump) ? jumpY : targetY),
+                    Quaternion.identity);
+                
+                GameObject xIndicatorObj = Instantiate(xIndicatorPrefab, 
+                    new Vector2(_currNote.xPosition, spawnY),
+                    Quaternion.identity);
+
+
                 SockNote note = noteObj.GetComponent<SockNote>();
+                
+                approachCircleObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                xIndicatorObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                
                 note.startDsp = nextBeatSpawnTime;
-                note.targetDsp = nextBeatSpawnTime + dropTime;
+                note.targetDsp = nextBeatSpawnTime + GetHitTime(_currNote);
                 note.killDsp = nextBeatSpawnTime + killTime;
                 
                 _noteI++;
-                nextBeatSpawnTime = audioStartTime + _currNote.noteTime- dropTime;
+                if (_noteI < _songProfiler.Song.Count) nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);
+                else
+                {
+                    // end song
+                }
             } 
         }
     }
