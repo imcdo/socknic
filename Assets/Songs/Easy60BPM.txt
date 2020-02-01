@@ -1,0 +1,11 @@
+5 -1 False True
+
+8 1 False False
+
+11 -1 False True
+
+14 1 False False
+
+17 1 False False
+
+20 -1 False True
