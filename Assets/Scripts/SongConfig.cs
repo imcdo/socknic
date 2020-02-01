@@ -10,4 +10,6 @@ public class SongConfig : ScriptableObject
     public float hp;
     public AudioClip song;
     public float time => song.length;
+
+    public TextAsset songText;
 }
