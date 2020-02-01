@@ -28,8 +28,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
 
     public PlayerHitbox hitbox;
     private void Start(){
-        groundY = RhythmManager.Instance.targetY;
-        jumpY = RhythmManager.Instance.jumpY;
+        groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
+        jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
         _playerState = PlayerState.Grounded;
     }
 
