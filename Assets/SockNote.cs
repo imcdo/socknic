@@ -28,18 +28,14 @@ public class SockNote : MonoBehaviour
         
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
 
-        if (AudioSettings.dspTime >= targetDsp && !_played)
-        {
-            hitSource.Play();
-            _played = true;
-        }
-            
+        
+    }
 
-
-        // TODO Remove, debug code
-        if (AudioSettings.dspTime >= killDsp)
-        {
-            Destroy(gameObject);
-        }
+    // Call when this Note is hit by a player
+    public void Hit()
+    {
+        Debug.Log("boop");
+        //  TODO score based on accuracy here
+        Destroy(gameObject);
     }
 }

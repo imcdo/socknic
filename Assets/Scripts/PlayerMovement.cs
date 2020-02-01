@@ -24,11 +24,18 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
 
     [SerializeField] float _airControl = 0.5f;
     [SerializeField] int _jumpBeatMultiplier = 2;
+
+
+    public PlayerHitbox hitbox;
     private void Start(){
         groundY = RhythmManager.Instance.targetY;
         jumpY = RhythmManager.Instance.jumpY;
         _playerState = PlayerState.Grounded;
     }
+
+
+    
+
     private void Update() {
         switch (_playerState){
             case PlayerState.Jumping:
@@ -90,7 +97,9 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
         }
     }
 
-    private void OnHit(){
-        Debug.Log("Hit");
+    private void OnHit()
+    {
+        GetComponent<AudioSource>().Play();
+        hitbox.TryHit();
     }
 }
