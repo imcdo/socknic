@@ -9,9 +9,12 @@ public class PlayerMovement : MonoBehaviour
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public int m_PlayerNumber = 1; 
     Vector2 m_MovementInput;
-    float m_movespeed = 10f;
+    public float m_movespeed = 10f;
     bool jumping;
     float gravity = 10f;
+
+    public PlayerHitbox hitbox;
+    
     private void Update() {
         Move();
         if(!jumping){
@@ -44,7 +47,9 @@ public class PlayerMovement : MonoBehaviour
             jumping = false;
         }
     }
-    private void OnHit(){
-        Debug.Log("Hit");
+    private void OnHit()
+    {
+        GetComponent<AudioSource>().Play();
+        hitbox.TryHit();
     }
 }
