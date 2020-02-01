@@ -5,27 +5,84 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+enum PlayerState : byte { Grounded, Jumping, Falling}
+
     float bpm = 40f; //RhythmManager.Instance.currentSong.bpm;
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public SongProfiler.PlayerNumber playerNumber; 
     Vector2 m_MovementInput;
-    public float m_movespeed = 10f;
-    bool jumping;
+    float m_movespeed = 10f;
+    PlayerState _playerState;
+    float _startPhaseTime;
     float gravity = 10f;
 
+    float groundY;
+    float jumpY;
+
+    [SerializeField]AnimationCurve jumpCurve;
+    [SerializeField]AnimationCurve fallCurve;
+
+    [SerializeField] float _airControl = 0.5f;
+    [SerializeField] int _jumpBeatMultiplier = 2;
+
+
     public PlayerHitbox hitbox;
+    private void Start(){
+        groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
+        jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
+        _playerState = PlayerState.Grounded;
+    }
+
+
     
+
     private void Update() {
-        Move();
-        if(!jumping){
+        switch (_playerState){
+            case PlayerState.Jumping:
+                Jump();
+                break;
+            case PlayerState.Falling:
+                Fall();
+                break;
+
+        }
+
+        if(_playerState == PlayerState.Falling){
             Fall();
         }
+        Move();
+        
     }
     private void Fall(){
-         m_MovementInput.y -= gravity;
+        // Debug.Log("falling");
+        float t = (float)(AudioSettings.dspTime - _startPhaseTime) * _jumpBeatMultiplier  / (RhythmManager.Instance.currentSong.bpm / 60);
+        if(t>=1){
+            _startPhaseTime = (float)AudioSettings.dspTime;
+            _playerState = PlayerState.Grounded;
+            transform.position = new Vector2(transform.position.x, groundY);
+        }
+        transform.position = new Vector2(transform.position.x, Mathf.Lerp(jumpY, groundY, fallCurve.Evaluate(t)));
+        
+    }
+    private void Jump(){
+        // Debug.Log("falling");
+        float t = (float)(AudioSettings.dspTime - _startPhaseTime) * _jumpBeatMultiplier / (RhythmManager.Instance.currentSong.bpm  / 60);
+        if(t >= 1){
+            _startPhaseTime = (float)AudioSettings.dspTime;
+            _playerState = PlayerState.Falling;
+            Fall();
+            return;
+        }
+        float adjT = jumpCurve.Evaluate(t);
+        float newY =  Mathf.Lerp(groundY, jumpY, adjT);
+        transform.position = new Vector2(transform.position.x, newY);
+        //Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {t} adjT: {adjT}");
     }
     private void Move(){
-        Vector2 movement = new Vector2(m_MovementInput.x, 0) * m_movespeed * Time.deltaTime;
+        
+        
+        Vector2 movement = m_MovementInput * m_movespeed * RhythmManager.Instance.deltaTime;
+        if (_playerState != PlayerState.Grounded) movement *= _airControl;
         transform.Translate(movement);
     }
     private void OnMove(InputValue value){
@@ -33,20 +90,13 @@ public class PlayerMovement : MonoBehaviour
         m_MovementInput.y = 0;
     }
     private void OnJump(){
-        if(!jumping){
-            float timePassed = 0;
-            while(timePassed <= bpm){
-                m_MovementInput.y += (jumpHeight * Time.deltaTime);
-                timePassed += Time.deltaTime;
-            }
+        //Debug.Log("jump");
+        if(_playerState == PlayerState.Grounded){
+            _playerState = PlayerState.Jumping;
+            _startPhaseTime = (float)AudioSettings.dspTime;
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if(other.collider.gameObject.layer == 8){
-            jumping = false;
-        }
-    }
     private void OnHit()
     {
         GetComponent<AudioSource>().Play();
