@@ -387,6 +387,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &743320625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7576166511588338568, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2606545660090946043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &743320626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743320625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a36f911d76796439716a60fc6386cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sockNote: {fileID: 0}
 --- !u!1 &906277945
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,8 +569,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notePrefab: {fileID: 7931808282081436553, guid: 5c2a7d2bbeb0a1e489fd6e220dbc6d3f,
     type: 3}
+  approachCirclePrefab: {fileID: 7576166511588338568, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+    type: 3}
   introDelay: 2
-  currentSong: {fileID: 11400000, guid: 580fd7ca1cf505d4cbfccd8abf706741, type: 2}
+  currentSong: {fileID: 11400000, guid: 1d26945964a539b4cbca3ecdcf2664d2, type: 2}
   musicSource: {fileID: 1063250760}
   spawn: {fileID: 17171202}
   target: {fileID: 184642123}
@@ -1157,3 +1178,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2606545660090946043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 683085609963929708, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576166511588338568, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
+        type: 3}
+      propertyPath: m_Name
+      value: ApproachCircle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b, type: 3}

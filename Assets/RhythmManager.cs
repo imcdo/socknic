@@ -1,6 +1,7 @@
 ﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+    using UnityEngine.Serialization;
     using Note = SongProfiler.Note;
 
 // TODO Could make this let people register to UnityEvents that return information about beats for portability but I'm lazy (~:
@@ -10,6 +11,9 @@ public class RhythmManager : MonoBehaviour
     public static RhythmManager Instance => _instance;
     
     public GameObject notePrefab;
+    public GameObject approachCirclePrefab;
+    public GameObject xIndicatorPrefab;
+    
     
     // Seconds
     public float introDelay;
@@ -117,7 +121,7 @@ public class RhythmManager : MonoBehaviour
 
     private float GetHitTime(Note note)
     {
-        if (note.jump)
+        if (note.jump == SongProfiler.NotePosition.Jump)
             return spawnToJumpDistance / currentSong.approachRate;
         return spawnToTargetDistance / currentSong.approachRate;
     }
@@ -130,16 +134,33 @@ public class RhythmManager : MonoBehaviour
             float currentDspTime = (float) AudioSettings.dspTime;
             
             // Time to spawn a note!
-            while (currentDspTime >= nextBeatSpawnTime)
+            while (currentDspTime >= nextBeatSpawnTime && _noteI < _songProfiler.Song.Count)
             {
                 GameObject noteObj = Instantiate(notePrefab, new Vector2(_currNote.xPosition,spawnY), Quaternion.identity, spawn.transform);
+                GameObject approachCircleObj = Instantiate(approachCirclePrefab, 
+                    new Vector2(_currNote.xPosition, (_currNote.jump == SongProfiler.NotePosition.Jump) ? jumpY : targetY),
+                    Quaternion.identity);
+                
+                GameObject xIndicatorObj = Instantiate(xIndicatorPrefab, 
+                    new Vector2(_currNote.xPosition, spawnY),
+                    Quaternion.identity);
+
+
                 SockNote note = noteObj.GetComponent<SockNote>();
+                
+                approachCircleObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                xIndicatorObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                
                 note.startDsp = nextBeatSpawnTime;
                 note.targetDsp = nextBeatSpawnTime + GetHitTime(_currNote);
                 note.killDsp = nextBeatSpawnTime + killTime;
                 
                 _noteI++;
-                nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);
+                if (_noteI < _songProfiler.Song.Count) nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);
+                else
+                {
+                    // end song
+                }
             } 
         }
     }
