@@ -102,8 +102,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         if (_playerState != PlayerState.Grounded) xMod *= _airControl;
 
         xVel = Mathf.Clamp(xVel + xMod, -maxXSpeed, maxXSpeed);
-        transform.Translate(new Vector2(xVel * RhythmManager.Instance.deltaTime, 0));
-        if (_playerState == PlayerState.Grounded) xVel *= (1 - friction * RhythmManager.Instance.deltaTime);
+        transform.Translate(new Vector2(xVel * Time.deltaTime, 0));
+        if (_playerState == PlayerState.Grounded) xVel *= (1 - friction * Time.deltaTime);
     }
     private void OnMove(InputValue value){
         m_MovementInput = value.Get<Vector2>();
