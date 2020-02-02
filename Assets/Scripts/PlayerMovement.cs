@@ -47,6 +47,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private int _score = 0;
     private float timeForLowHit = 0;
     private WaitForSeconds lowhitwait;
+    private WaitForSeconds highhitwait;
 
     
     [SerializeField] private ScoreUI _scoreUi;
@@ -65,6 +66,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         animator.SetFloat("LowHitSpeed", timeForLowHit / .217f);
         
         lowhitwait = new WaitForSeconds(timeForLowHit);
+        highhitwait = new WaitForSeconds(timeForLowHit/2);
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
@@ -207,11 +209,14 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     {
         animator.SetBool("Hitting", true);
         GetComponent<AudioSource>().Play();
-        Debug.Log(animator.GetBool("Hitting"));
-        Debug.Log(timeForLowHit);
+        
         hitbox.TryHit(playerNumber);
-        yield return lowhitwait;
-        Debug.Log("after tryhit");
+        if(_playerState == PlayerState.Grounded){
+            yield return lowhitwait;
+        } else{
+            yield return highhitwait;
+        }
+        
         animator.SetBool("Hitting", false);
         Debug.Log(animator.GetBool("Hitting"));
     }
