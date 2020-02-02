@@ -37,7 +37,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     [SerializeField] float _airControl = 0.5f;
     [SerializeField] int _jumpBeatMultiplier = 2;
     [SerializeField] float _fallmultiplier = 1.1f;
-    [SerializeField] float _lowhitmultiplier = 1.1f;
+    float _lowhitmultiplier = 10f;
     [SerializeField] int fastFall = 2;
 
     [SerializeField] private GameObject poof;
@@ -66,7 +66,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         animator.SetFloat("LowHitSpeed", timeForLowHit / .217f);
         
         lowhitwait = new WaitForSeconds(timeForLowHit);
-        highhitwait = new WaitForSeconds(timeForLowHit/2);
+        highhitwait = new WaitForSeconds(timeForLowHit/1.7f);
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
