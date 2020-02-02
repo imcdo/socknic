@@ -214,6 +214,7 @@ MonoBehaviour:
   startDsp: 0
   targetDsp: 0
   killDsp: 0
+  embiggenScale: 1.2
   sockAppearance: {fileID: 4615590074282654065}
   effects: []
   t: 0
@@ -255,6 +256,48 @@ MonoBehaviour:
   owner: 0
   notePosition: 0
   wings: {fileID: 6614455502237604837}
+  scoreEvaluationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.85
+      value: 0
+      inSlope: -0
+      outSlope: 10.000004
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.95
+      value: 1
+      inSlope: 10.000004
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &8042792705413907831
 AudioSource:
   m_ObjectHideFlags: 0

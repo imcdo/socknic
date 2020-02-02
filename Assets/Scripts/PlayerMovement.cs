@@ -39,6 +39,11 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     [SerializeField] private GameObject poof;
     private float _activeT = 0;
     public PlayerHitbox hitbox;
+    private int _combo = 0;
+    private int _score = 0;
+
+    [SerializeField] private ScoreUI _scoreUi;
+    
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
@@ -77,6 +82,30 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         
         
     }
+
+    private int CalculateNoteScore(float rawAccuracy)
+    {
+        int scoreThresh = 3;
+        if (rawAccuracy < .3334) scoreThresh = 1;
+        else if (rawAccuracy < .6667) scoreThresh = 2;
+
+        return scoreThresh * _combo;
+    }
+    public void UpdateScore(float f)
+    {
+        if (f < 1)
+        {
+            _combo = 0;
+            _scoreUi.SetCombo(_combo);
+            return;
+        }
+
+        _combo++;
+        _score += CalculateNoteScore(f);
+        
+        _scoreUi.SetCombo(_combo);
+        _scoreUi.SetScore(_score);
+    }
     private void Fall()
     {
         // Debug.Log("falling");
@@ -91,8 +120,9 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             _activeT = 0;
             transform.position = new Vector2(transform.position.x, groundY);
 
-            Instantiate(poof, transform.position + new Vector3(-1.0f,-.4f), Quaternion.identity);
-            Instantiate(poof, transform.position + new Vector3(1.0f,-.4f), Quaternion.identity).transform.localScale = new Vector2(-1, 1);
+            Instantiate(poof, transform.position + new Vector3(-1.0f, -.4f), Quaternion.identity).transform.localScale =
+                new Vector3(.8f, .5f);
+            Instantiate(poof, transform.position + new Vector3(1.0f,-.4f), Quaternion.identity).transform.localScale = new Vector2(-.8f, .5f);
             return;
         }
         
