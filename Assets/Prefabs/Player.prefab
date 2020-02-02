@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicatorLifetime: 0.1
+  _playerMovement: {fileID: 5719478009948546908}
 --- !u!1 &1764344720
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,9 +373,9 @@ MonoBehaviour:
       inSlope: 2
       outSlope: 2
       tangentMode: 0
-      weightedMode: 0
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -402,19 +403,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 386.11682
+      outSlope: 386.11682
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
+      weightedMode: 1
+      inWeight: 0.002557516
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   _airControl: 0.5
-  _jumpBeatMultiplier: 4
+  _jumpBeatMultiplier: 8
   fastFall: 2
+  poof: {fileID: 8854041202226532697, guid: 8e8d407bc9aa8c9409d6f64e25e8d6e6, type: 3}
   hitbox: {fileID: 894419867}
+  _scoreUi: {fileID: 0}
 --- !u!50 &5719478009948546903
 Rigidbody2D:
   serializedVersion: 4
