@@ -120,8 +120,6 @@ public class RhythmManager : MonoBehaviour
         
         audioStartTime = (float) AudioSettings.dspTime;
         
-        Debug.Log(_songProfiler.Song.Count);
-        
         // Time the next beat should hit the target
         nextBeatSpawnTime = audioStartTime - GetHitTime(_currNote) + _currNote.noteTime;
         if (nextBeatSpawnTime < audioStartTime) Debug.LogWarning("first beat before song");

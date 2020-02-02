@@ -20,7 +20,8 @@ public class SockNote : MonoBehaviour
 
     private AudioSource hitSource;
     private bool _played = false;
-
+    [SerializeField] private AnimationCurve noteFalloffCurve;
+    private SpriteRenderer[] _renderers;
     public Sock sock;
 
     public SongProfiler.PlayerNumber owner;
@@ -28,6 +29,8 @@ public class SockNote : MonoBehaviour
     void Start()
     {
         hitSource = GetComponent<AudioSource>();
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
+
     }
     void Update()
     {
@@ -35,8 +38,20 @@ public class SockNote : MonoBehaviour
         t = ((float) AudioSettings.dspTime - startDsp) / (killDsp - startDsp);
         y = Mathf.Lerp(RhythmManager.Instance.spawnY,RhythmManager.Instance.killY, t);
         
+        if (AudioSettings.dspTime >= targetDsp && !_played)
+        {
+            hitSource.Play();
+            _played = true;
+        }
+
+        float tDeath = Mathf.Max(((float) AudioSettings.dspTime - targetDsp) / (killDsp - targetDsp), 0);
+        foreach (var sr in _renderers)
+            sr.color = sr.color * noteFalloffCurve.Evaluate(1 - tDeath);
+
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
+
+       
 
     public void SetSock(Sock givenSock)
     {
