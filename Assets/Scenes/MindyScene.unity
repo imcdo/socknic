@@ -784,6 +784,126 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].time
+      value: 0.5325336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: 0.9470249
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: 0.49255067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: 0.49255067
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outWeight
+      value: 0.11894442
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].time
+      value: 0.5364115
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].value
+      value: 0.7834656
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].inSlope
+      value: 0.83434755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].outSlope
+      value: 0.83434755
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[1].outWeight
+      value: 0.1218287
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[2].inSlope
+      value: 0.091189966
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[2].outSlope
+      value: 0.091189966
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[0].inSlope
+      value: 2.4507189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[0].outSlope
+      value: 2.4507189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[0].outWeight
+      value: 0.08040396
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: fallCurve.m_Curve.Array.data[2].inWeight
+      value: 0.11131753
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df3d0f9f241d6954bb3b8947ea1950e9, type: 3}
 --- !u!4 &1120770098 stripped
@@ -1283,32 +1403,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 19.18938, y: 0.6481209}
   m_EdgeRadius: 0
---- !u!61 &2116386014
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116386011}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!61 &2116386015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1392,6 +1486,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece171dd11964a14a9c541d8fbc5aae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &2116386023
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116386011}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7351710566183305912
 GameObject:
   m_ObjectHideFlags: 0
