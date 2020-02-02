@@ -13,7 +13,7 @@ public class SongProfiler : MonoBehaviour
     {
         public float noteTime;
         public float xPosition;
-        public NotePosition jump;
+        public NotePosition position;
         public PlayerNumber player;
     }
 
@@ -33,7 +33,7 @@ public class SongProfiler : MonoBehaviour
             Note note = new Note();
             if (!float.TryParse(tokens[0], out note.noteTime) 
                 || !float.TryParse(tokens[1], out note.xPosition)
-                || !Enum.TryParse(tokens[2], out note.jump)
+                || !Enum.TryParse(tokens[2], out note.position)
                 || !Enum.TryParse(tokens[3], out note.player))
             {
                 Debug.LogWarning("Missparse :'(");
