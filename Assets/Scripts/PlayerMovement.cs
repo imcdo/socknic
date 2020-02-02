@@ -1,21 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-enum PlayerState : byte { Grounded, Jumping, Falling}
+enum PlayerState : byte { Grounded, Jumping, Falling }
 
     float bpm = 40f; //RhythmManager.Instance.currentSong.bpm;
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public SongProfiler.PlayerNumber playerNumber; 
     Vector2 m_MovementInput;
-    public float m_movespeed = 10f;
     PlayerState _playerState;
     float _startPhaseTime;
     float gravity = 10f;
 
+    private float xVel;
+    [SerializeField] private float maxXSpeed = 8f;
+    [SerializeField] private float acceleration = 2f;
+    [SerializeField] private float friction = 1.2f;
+    
     float groundY;
     float jumpY;
 
@@ -31,6 +36,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
         _playerState = PlayerState.Grounded;
+        xVel = 0;
     }
 
 
@@ -78,12 +84,13 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
         transform.position = new Vector2(transform.position.x, newY);
         //Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {t} adjT: {adjT}");
     }
-    private void Move(){
-        
-        
-        Vector2 movement = m_MovementInput * m_movespeed * RhythmManager.Instance.deltaTime;
-        if (_playerState != PlayerState.Grounded) movement *= _airControl;
-        transform.Translate(movement);
+    private void Move()
+    {
+        float xMod = (m_MovementInput.x * acceleration - friction * xVel ) * RhythmManager.Instance.deltaTime;
+        if (_playerState != PlayerState.Grounded) xMod *= _airControl;
+
+        xVel = Mathf.Clamp(xVel + xMod, -maxXSpeed, maxXSpeed);
+        transform.Translate(new Vector2(xVel * RhythmManager.Instance.deltaTime, 0));
     }
     private void OnMove(InputValue value){
         m_MovementInput = value.Get<Vector2>();
