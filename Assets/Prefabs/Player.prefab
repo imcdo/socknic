@@ -360,9 +360,9 @@ MonoBehaviour:
   gotFirstSock: 0
   sockAppearance: {fileID: 1764344720}
   playerNumber: 0
-  maxXSpeed: 20
-  acceleration: 20
-  friction: 8
+  maxXSpeed: 3
+  acceleration: 1
+  friction: 12
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -474,8 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 537ef95288139e74a9b71a37a4ba2b25,
-    type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
