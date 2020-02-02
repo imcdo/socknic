@@ -37,12 +37,6 @@ public class SockNote : MonoBehaviour
         // Update Y position based on target
         t = ((float) AudioSettings.dspTime - startDsp) / (killDsp - startDsp);
         y = Mathf.Lerp(RhythmManager.Instance.spawnY,RhythmManager.Instance.killY, t);
-        
-        if (AudioSettings.dspTime >= targetDsp && !_played)
-        {
-            hitSource.Play();
-            _played = true;
-        }
 
         float tDeath = Mathf.Max(((float) AudioSettings.dspTime - targetDsp) / (killDsp - targetDsp), 0);
         foreach (var sr in _renderers)
