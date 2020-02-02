@@ -40,6 +40,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
+        
         _playerState = PlayerState.Grounded;
         xVel = 0;
     }
@@ -47,12 +48,16 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Update() {
         switch (_playerState){
             case PlayerState.Jumping:
+                animator.SetBool("Jumping", true);
+                animator.SetFloat("JumpSpeed",(float)(8/60) * (float)(RhythmManager.Instance.currentSong.bpm / 60));
                 Jump();
                 break;
             case PlayerState.Falling:
                 Fall();
                 break;
-
+            default:
+                animator.SetBool("Jumping", false);
+                break;
         }
 
         if(_playerState == PlayerState.Falling){
@@ -82,6 +87,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         if(t >= 1){
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Falling;
+            animator.SetBool("Jumping", false);
             Fall();
             return;
         }
