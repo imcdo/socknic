@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53935161}
   - component: {fileID: 53935162}
+  - component: {fileID: 4940846242762463041}
   m_Layer: 0
   m_Name: Appearance
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6e63c1383b27c224ebd70d4c1d43ac87, type: 3}
-  m_Color: {r: 0.9245283, g: 0.3532396, b: 0.37733632, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -81,6 +82,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4940846242762463041
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53935160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c2f53ad1ccb1094484aaefb1f9eb116, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &894419863
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +236,8 @@ GameObject:
   - component: {fileID: 5719478009948546903}
   - component: {fileID: 5719478009948546904}
   - component: {fileID: 5719478009948546905}
-  - component: {fileID: 5719478009948546906}
   - component: {fileID: 5313387381781661443}
+  - component: {fileID: 9028612047321706824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -253,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dcb7cc9e9183d4db6a020f0b539307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4940846242762463041}
   m_PlayerNumber: 1
   jumpCurve:
     serializedVersion: 2
@@ -392,7 +413,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.754717, g: 0.16019939, b: 0.16019939, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -402,53 +423,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5719478009948546906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5719478009948546902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 537ef95288139e74a9b71a37a4ba2b25,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3e4120be-8487-45f6-aba7-7218452d56ed
-    m_ActionName: Player Controls/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8812fa75-6eda-4de9-988a-067cf910200a
-    m_ActionName: Player Controls/Hit[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 643490ab-feff-468d-9a89-e219579fe148
-    m_ActionName: Player Controls1/Move[/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 07000a96-6f37-44aa-8c4b-bffb15972f0b
-    m_ActionName: Player Controls1/Hit[/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player Controls1
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!61 &5313387381781661443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -475,3 +449,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6166463, y: 1.319067}
   m_EdgeRadius: 0
+--- !u!114 &9028612047321706824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719478009948546902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 537ef95288139e74a9b71a37a4ba2b25,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player Controls1
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

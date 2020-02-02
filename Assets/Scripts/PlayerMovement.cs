@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
 enum PlayerState : byte { Grounded, Jumping, Falling}
 
+    [SerializeField] private Animator animator;
+
     float bpm = 40f; //RhythmManager.Instance.currentSong.bpm;
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public int m_PlayerNumber = 1; 
@@ -90,7 +92,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
         m_MovementInput.y = 0;
     }
     private void OnJump(){
-        //Debug.Log("jump");
+        Debug.Log("jump");
         if(_playerState == PlayerState.Grounded){
             _playerState = PlayerState.Jumping;
             _startPhaseTime = (float)AudioSettings.dspTime;
