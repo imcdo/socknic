@@ -19,13 +19,13 @@ public class ScoreUI : MonoBehaviour
     
     public void SetScore(int score)
     {
-        _scoreText.text = $"Score: {score}";
+        _scoreText.text = $"{score}";
         _scoreAnimator.SetTrigger("Update");
     }
 
     public void SetCombo(int combo)
     {
-        _comboText.text = $"Combo: x{combo}";
+        _comboText.text = $"{combo}x";
         _comboAnimator.SetTrigger("Update");
 
     }
