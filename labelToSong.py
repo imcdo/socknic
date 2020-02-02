@@ -13,7 +13,7 @@ for line in aud.readlines():
     time = line.split()[0]
     # if last_time - float(time) < thresh:
         # continue
-    sng.write(f"{time} {(random.random() * 4 - 2)} {random.choice(['Ground'])} {random.choice(['Player1'])}\n")
+    sng.write(f"{time} {(random.random() * 4 - 2)} {random.choice(['Ground'])} {random.choice(['Player2'])}\n")
     last_time = float(time)
 
 sng.close()
