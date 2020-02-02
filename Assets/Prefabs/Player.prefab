@@ -360,9 +360,9 @@ MonoBehaviour:
   gotFirstSock: 0
   sockAppearance: {fileID: 1764344720}
   playerNumber: 0
-  maxXSpeed: 20
-  acceleration: 20
-  friction: 8
+  maxXSpeed: 3
+  acceleration: 1
+  friction: 12
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -412,7 +412,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _airControl: 0.5
-  _jumpBeatMultiplier: 2
+  _jumpBeatMultiplier: 4
+  fastFall: 2
   hitbox: {fileID: 894419867}
 --- !u!50 &5719478009948546903
 Rigidbody2D:

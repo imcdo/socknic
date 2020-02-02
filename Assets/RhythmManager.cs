@@ -14,8 +14,6 @@ public class RhythmManager : MonoBehaviour
     public GameObject approachCirclePrefab;
     public GameObject xIndicatorPrefab;
     
-    private float _lastTime;
-    public float deltaTime => (float)AudioSettings.dspTime - _lastTime;
     // Seconds
     public float introDelay;
     // Time between spawn and getting to the target
@@ -137,7 +135,7 @@ public class RhythmManager : MonoBehaviour
 
     private float GetHitTime(Note note)
     {
-        if (note.jump == SongProfiler.NotePosition.Jump)
+        if (note.position == SongProfiler.NotePosition.Jump)
             return spawnToJumpDistance / currentSong.approachRate;
         return spawnToTargetDistance / currentSong.approachRate;
     }
@@ -154,7 +152,7 @@ public class RhythmManager : MonoBehaviour
             {
                 GameObject noteObj = Instantiate(notePrefab, new Vector2(_currNote.xPosition,spawnY), Quaternion.identity, spawn.transform);
                 GameObject approachCircleObj = Instantiate(approachCirclePrefab, 
-                    new Vector2(_currNote.xPosition, (_currNote.jump == SongProfiler.NotePosition.Jump) ? jumpY : targetY),
+                    new Vector2(_currNote.xPosition, (_currNote.position == SongProfiler.NotePosition.Jump) ? jumpY : targetY),
                     Quaternion.identity);
                 
                 GameObject xIndicatorObj = Instantiate(xIndicatorPrefab, 
@@ -173,12 +171,12 @@ public class RhythmManager : MonoBehaviour
                 note.targetDsp = nextBeatSpawnTime + GetHitTime(_currNote);
                 note.killDsp = nextBeatSpawnTime + killTime;
                 
-                // Sets note owner and gets the right sock from the player's queue
-                note.owner = _currNote.player;
+                // Sets note owner and position
                 
                 // Get the next Sock you should spawn
+                note.owner = _currNote.player;
                 Sock sock = SockManager.Instance.PopRhythmQueue(note.owner);
-                note.SetSock(sock);
+                note.SetSock(sock, _currNote.player, _currNote.position);
 
                 _noteI++;
                 if (_noteI < _songProfiler.Song.Count) nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);
@@ -188,7 +186,5 @@ public class RhythmManager : MonoBehaviour
                 }
             } 
         }
-
-        _lastTime = (float)AudioSettings.dspTime;
     }
 }

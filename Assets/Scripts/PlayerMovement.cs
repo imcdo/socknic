@@ -24,7 +24,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private float xVel;
     [SerializeField] private float maxXSpeed = 8f;
     [SerializeField] private float acceleration = 2f;
-    [SerializeField] private float friction = 1.2f;
+    [SerializeField] private float friction = .8f;
     
     float groundY;
     float jumpY;
@@ -34,8 +34,9 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     [SerializeField] float _airControl = 0.5f;
     [SerializeField] int _jumpBeatMultiplier = 2;
+    [SerializeField] int fastFall = 2;
 
-
+    private float _activeT = 0;
     public PlayerHitbox hitbox;
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
@@ -59,10 +60,6 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
                 animator.SetBool("Jumping", false);
                 break;
         }
-
-        if(_playerState == PlayerState.Falling){
-            Fall();
-        }
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
@@ -72,46 +69,56 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void Fall(){
         // Debug.Log("falling");
-        float t = (float)(AudioSettings.dspTime - _startPhaseTime) * _jumpBeatMultiplier  / (RhythmManager.Instance.currentSong.bpm / 60);
-        if(t>=1){
+//        Debug.Log($"Fooll y= {transform.position.y} T: {_activeT}");
+
+        _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm * 
+                    Time.deltaTime * ((m_MovementInput.y < 0) ? fastFall : 1);
+        if(_activeT>=1)
+        {
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Grounded;
+            _activeT = 0;
             transform.position = new Vector2(transform.position.x, groundY);
+            return;
         }
-        transform.position = new Vector2(transform.position.x, Mathf.Lerp(jumpY, groundY, fallCurve.Evaluate(t)));
+        transform.position = new Vector2(transform.position.x, Mathf.Lerp(jumpY, groundY, fallCurve.Evaluate(_activeT)));
         
     }
-    private void Jump(){
-        // Debug.Log("falling");
-        float t = (float)(AudioSettings.dspTime - _startPhaseTime) * _jumpBeatMultiplier / (RhythmManager.Instance.currentSong.bpm  / 60);
-        if(t >= 1){
+    private void Jump()
+    {
+        _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm *
+                    Time.deltaTime;
+        if(_activeT >= 1)
+        {
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Falling;
             animator.SetBool("Jumping", false);
+            _activeT = 0;
             Fall();
             return;
         }
-        float adjT = jumpCurve.Evaluate(t);
+        float adjT = jumpCurve.Evaluate(_activeT);
         float newY =  Mathf.Lerp(groundY, jumpY, adjT);
         transform.position = new Vector2(transform.position.x, newY);
-        //Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {t} adjT: {adjT}");
+//        Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {_activeT} adjT: {adjT}");
     }
     private void Move()
     {
-        float xMod = (m_MovementInput.x * acceleration - friction * xVel ) * RhythmManager.Instance.deltaTime;
-        
+        float xMod = acceleration * m_MovementInput.x;
         if (_playerState != PlayerState.Grounded) xMod *= _airControl;
 
         xVel = Mathf.Clamp(xVel + xMod, -maxXSpeed, maxXSpeed);
-        transform.Translate(new Vector2(xVel * RhythmManager.Instance.deltaTime, 0));
-     }
+        transform.Translate(new Vector2(xVel * Time.deltaTime, 0));
+        if (_playerState == PlayerState.Grounded) xVel *= (1 - friction * Time.deltaTime);
+    }
     private void OnMove(InputValue value){
         m_MovementInput = value.Get<Vector2>();
         m_MovementInput.y = 0;
     }
-    private void OnJump(){
-        Debug.Log("jump");
-        if(_playerState == PlayerState.Grounded){
+    private void OnJump()
+    {
+        if(_playerState == PlayerState.Grounded)
+        {
             _playerState = PlayerState.Jumping;
             _startPhaseTime = (float)AudioSettings.dspTime;
         }
