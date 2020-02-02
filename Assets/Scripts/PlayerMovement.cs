@@ -55,7 +55,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
-        
+        hitting = false;
         _playerState = PlayerState.Grounded;
         xVel = 0;
     }
@@ -207,18 +207,24 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     private IEnumerator OnHit()
     {
-        animator.SetBool("Hitting", true);
-        GetComponent<AudioSource>().Play();
-        
-        hitbox.TryHit(playerNumber);
-        if(_playerState == PlayerState.Grounded){
-            yield return lowhitwait;
+        if(hitting){
+
         } else{
-            yield return highhitwait;
+            hitting = true;
+            animator.SetBool("Hitting", true);
+            GetComponent<AudioSource>().Play();
+            
+            hitbox.TryHit(playerNumber);
+            if(_playerState == PlayerState.Grounded){
+                yield return lowhitwait;
+            } else{
+                yield return highhitwait;
+            }
+            
+            animator.SetBool("Hitting", false);
+            hitting = false;
         }
         
-        animator.SetBool("Hitting", false);
-        Debug.Log(animator.GetBool("Hitting"));
     }
 
 
