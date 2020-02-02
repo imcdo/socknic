@@ -945,6 +945,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e5ca48485d12ed41a96921573183b32, type: 2}
   emptySock: {fileID: 11400000, guid: cd43015bf3bd1384cb5129c1a0c369e1, type: 2}
   availableSocks: []
+  playerOneSockQueue: []
+  playerTwoSockQueue: []
 --- !u!4 &1380764190
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,21 +1205,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304442642807565396, guid: 3fb47133098ea77469bc0f20eaefcd09,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304442642807565396, guid: 3fb47133098ea77469bc0f20eaefcd09,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.701
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304442642807565396, guid: 3fb47133098ea77469bc0f20eaefcd09,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.941
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb47133098ea77469bc0f20eaefcd09, type: 3}
