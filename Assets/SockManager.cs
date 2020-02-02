@@ -12,21 +12,14 @@ public class SockManager : Singleton<SockManager>
     // Socks that have not been recently used
     public List<Sock> availableSocks;
 
-    public List<Sock> playerOneSockQueue;
-    public List<Sock> playerTwoSockQueue;
-
-    void Start()
+    public PlayerSocks playerOneSocks;
+    public PlayerSocks playerTwoSocks;
+    
+    public void InitSockManager()
     {
         // Init unusedSocks
         availableSocks.AddRange(sockCatalog);
-        
-        // Init player's queue
-        for (int i = 0; i < 2; i++)
-        {
-            QueuePlayerSock(SongProfiler.PlayerNumber.Player1);
-            QueuePlayerSock(SongProfiler.PlayerNumber.Player2);
-        }
-        
+
         RhythmManager.Instance.playerOne.UpdateSock();
         RhythmManager.Instance.playerTwo.UpdateSock();
     }
@@ -36,57 +29,91 @@ public class SockManager : Singleton<SockManager>
         return availableSocks[Random.Range(0, availableSocks.Count - 1)];
     }
 
-    private void QueuePlayerSock(SongProfiler.PlayerNumber playerNumber)
+    // Add more socks to both queues
+    private void QueueSock(SongProfiler.PlayerNumber playerNumber)
     {
         Sock sock = GetRandomAvailableSock();
         if (playerNumber == SongProfiler.PlayerNumber.Player1)
         {
-            playerOneSockQueue.Add(sock);
+            playerOneSocks.playerQueue.Add(sock);
+            playerOneSocks.rhythmQueue.Add(sock);
         }
 
         if (playerNumber == SongProfiler.PlayerNumber.Player2)
         {
-            playerTwoSockQueue.Add(sock);
+            playerTwoSocks.playerQueue.Add(sock);
+            playerTwoSocks.rhythmQueue.Add(sock);
         }
         availableSocks.Remove(sock);
     }
 
-    // Used to see the first Sock in a player's Queue
-    public Sock PeekPlayerSock(SongProfiler.PlayerNumber playerNumber)
+    // Used to get the next Sock to spawn
+    public Sock PopRhythmQueue(SongProfiler.PlayerNumber playerNumber)
     {
+        
         Sock sock = null;
         
         if (playerNumber == SongProfiler.PlayerNumber.Player1)
         {
-            sock = playerOneSockQueue[0];
+            if (playerOneSocks.rhythmQueue.Count == 0)
+            {
+                QueueSock(SongProfiler.PlayerNumber.Player1);
+            }
+            sock = playerOneSocks.rhythmQueue[0];
+            playerOneSocks.rhythmQueue.Remove(sock);
         }
 
         if (playerNumber == SongProfiler.PlayerNumber.Player2)
         {
-            sock = playerTwoSockQueue[0];
+            if (playerTwoSocks.rhythmQueue.Count == 0)
+            {
+                QueueSock(SongProfiler.PlayerNumber.Player2);
+            }
+            sock = playerTwoSocks.rhythmQueue[0];
+            playerTwoSocks.rhythmQueue.Remove(sock);
         }
 
         return sock;
     }
 
-    // Get the first sock of a Player, and maintain its size by adding a new one
+    // Get the first sock of a Player
     public Sock PopPlayerSock(SongProfiler.PlayerNumber playerNumber)
     {
-        Sock sock = PeekPlayerSock(playerNumber);
+        Sock sock = null;
         if (playerNumber == SongProfiler.PlayerNumber.Player1)
         {
-            playerOneSockQueue.Remove(sock);
+            if (playerOneSocks.playerQueue.Count == 0)
+            {
+                QueueSock(SongProfiler.PlayerNumber.Player1);
+            }
+            sock = playerOneSocks.playerQueue[0];
+            playerOneSocks.playerQueue.Remove(sock);
         }
 
         if (playerNumber == SongProfiler.PlayerNumber.Player2)
         {
-            playerTwoSockQueue.Remove(sock);
+            if (playerTwoSocks.playerQueue.Count == 0)
+            {
+                QueueSock(SongProfiler.PlayerNumber.Player2);
+                
+            }
+            sock = playerTwoSocks.playerQueue[0];
+            playerTwoSocks.playerQueue.Remove(sock);
         }
         
         availableSocks.Add(sock);
         
-        QueuePlayerSock(playerNumber);
-
         return sock;
     }
+}
+
+// NOTE: The Player Queue holds all the notes that the player is ready to display. The Rhythm Queue holds all the notes ready to spawn.
+// When a note is popped from the PlayerQueue, that means it has been hit and can be spawned again.
+[System.Serializable]
+public class PlayerSocks
+{
+    // What's shown to the Player
+    public List<Sock> playerQueue = new List<Sock>();
+    // What's given to the RhythmManager
+    public List<Sock> rhythmQueue = new List<Sock>();
 }

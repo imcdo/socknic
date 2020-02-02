@@ -117,13 +117,12 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         hitbox.TryHit(playerNumber);
     }
 
+
     // Called when the first sock is no longer relevant, like when it's Hit or Missed
     public void UpdateSock()
     {
-        // Pop the existing Sock
-        SockManager.Instance.PopPlayerSock(playerNumber);
-        // Update your appearance
-        sockAppearance.GetComponent<SpriteRenderer>().sprite = SockManager.Instance.PeekPlayerSock(playerNumber).sprite;
+        // Update your appearance by getting the next thing in your Queue
+        sockAppearance.GetComponent<SpriteRenderer>().sprite = SockManager.Instance.PopPlayerSock(playerNumber).sprite;
     }
     
 }

@@ -106,6 +106,9 @@ public class RhythmManager : MonoBehaviour
         beatInterval = 60 / (float) currentSong.bpm;
         musicSource.clip = currentSong.song;
         
+        // Set up queues
+        SockManager.Instance.InitSockManager();
+        
         PlaySong();
         
     }
@@ -173,7 +176,8 @@ public class RhythmManager : MonoBehaviour
                 // Sets note owner and gets the right sock from the player's queue
                 note.owner = _currNote.player;
                 
-                Sock sock = SockManager.Instance.PeekPlayerSock(note.owner);
+                // Get the next Sock you should spawn
+                Sock sock = SockManager.Instance.PopRhythmQueue(note.owner);
                 note.SetSock(sock);
 
                 _noteI++;
