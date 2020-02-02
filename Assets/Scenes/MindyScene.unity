@@ -2101,6 +2101,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundY
       objectReference: {fileID: 0}
+    - target: {fileID: 5304442642807565397, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304442642807565397, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1826404697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304442642807565397, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304442643717415446, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1826404697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304442643717415446, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304442643717415446, guid: 3fb47133098ea77469bc0f20eaefcd09,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb47133098ea77469bc0f20eaefcd09, type: 3}
 --- !u!1 &2116386009 stripped
