@@ -11,7 +11,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public SongProfiler.PlayerNumber playerNumber; 
     Vector2 m_MovementInput;
-    float m_movespeed = 10f;
+    public float m_movespeed = 10f;
     PlayerState _playerState;
     float _startPhaseTime;
     float gravity = 10f;
