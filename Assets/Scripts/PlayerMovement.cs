@@ -102,7 +102,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         }
 
         _combo++;
-        _score += CalculateNoteScore(f);
+        // TODO Hi Ian, I added a multiplier to make it seem more pointier sorry if it breaks anything D:
+        _score += CalculateNoteScore(f) * 1000;
         
         _scoreUi.SetCombo(_combo);
         _scoreUi.SetScore(_score);
