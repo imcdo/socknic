@@ -89,11 +89,12 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Move()
     {
         float xMod = (m_MovementInput.x * acceleration - friction * xVel ) * RhythmManager.Instance.deltaTime;
+        animator.SetFloat("Horizontal", Math.Abs(m_MovementInput.x));
         if (_playerState != PlayerState.Grounded) xMod *= _airControl;
 
         xVel = Mathf.Clamp(xVel + xMod, -maxXSpeed, maxXSpeed);
         transform.Translate(new Vector2(xVel * RhythmManager.Instance.deltaTime, 0));
-    }
+     }
     private void OnMove(InputValue value){
         m_MovementInput = value.Get<Vector2>();
         m_MovementInput.y = 0;
