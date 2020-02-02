@@ -40,7 +40,7 @@ public class SockNote : MonoBehaviour
 
         float tDeath = Mathf.Max(((float) AudioSettings.dspTime - targetDsp) / (killDsp - targetDsp), 0);
         foreach (var sr in _renderers)
-            sr.color = sr.color * noteFalloffCurve.Evaluate(1 - tDeath);
+            sr.color -= new Color(0, 0, 0, 1.0f - noteFalloffCurve.Evaluate(tDeath));
 
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
     }
