@@ -181,9 +181,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void OnJump()
     {
-        Instantiate(poof, transform.position + new Vector3(-1.0f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
-        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
-        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
+        Instantiate(poof, transform.position + new Vector3(-0.6f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
+        Instantiate(poof, transform.position + new Vector3(0.6f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
         
         if(_playerState == PlayerState.Grounded)
         {

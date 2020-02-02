@@ -46,6 +46,7 @@ public class SockNote : MonoBehaviour
 
     public AnimationCurve scoreEvaluationCurve;
     private float _scoreValue = 0;
+    private bool _postMiss = false;
     void Start()
     {
         _renderers = GetComponentsInChildren<SpriteRenderer>();
@@ -67,9 +68,10 @@ public class SockNote : MonoBehaviour
         _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / Mathf.Abs(startDsp - killDsp);
         
         
-        if (!hittable && AudioSettings.dspTime > targetDsp)
+        if (!_postMiss && !hittable && AudioSettings.dspTime > targetDsp)
         {
             MissEffect();
+            _postMiss = true;
         }
     }
 
