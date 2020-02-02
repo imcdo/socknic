@@ -11,7 +11,7 @@ public class PlayerHitbox : MonoBehaviour
     
     public void TryHit(SongProfiler.PlayerNumber playerNumber)
     {
-        Debug.Log("trying to hit something");
+        /*
         // Show the indicator for a bit
         if (indicatorRoutine != null)
         {
@@ -21,6 +21,7 @@ public class PlayerHitbox : MonoBehaviour
         indicatorRoutine = HideIndicator();
         StartCoroutine(indicatorRoutine);
         GetComponent<SpriteRenderer>().enabled = true;
+        */
         
         // Try and hit overlapping Notes
         List<Collider2D> overlappingColliders = new List<Collider2D>();

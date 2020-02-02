@@ -34,6 +34,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     [SerializeField] float _airControl = 0.5f;
     [SerializeField] int _jumpBeatMultiplier = 2;
+    [SerializeField] float _fallmultiplier = 1.1f;
     [SerializeField] int fastFall = 2;
 
     [SerializeField] private GameObject poof;
@@ -101,7 +102,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         }
 
         _combo++;
-        _score += CalculateNoteScore(f);
+        // TODO Hi Ian, I added a multiplier to make it seem more pointier sorry if it breaks anything D:
+        _score += CalculateNoteScore(f) * 1000;
         
         _scoreUi.SetCombo(_combo);
         _scoreUi.SetScore(_score);
@@ -112,7 +114,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 //        Debug.Log($"Fooll y= {transform.position.y} T: {_activeT}");
 
         _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm * 
-                    Time.deltaTime * ((m_MovementInput.y < 0) ? fastFall : 1);
+                    Time.deltaTime * ((m_MovementInput.y < 0) ? fastFall : 1) * _fallmultiplier;
         if(_activeT>=1)
         {
             _startPhaseTime = (float)AudioSettings.dspTime;
@@ -120,8 +122,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             _activeT = 0;
             transform.position = new Vector2(transform.position.x, groundY);
 
-            Instantiate(poof, transform.position + new Vector3(-1.0f, -.4f), Quaternion.identity).transform.localScale =
-                new Vector3(.8f, .5f);
+            Instantiate(poof, transform.position + new Vector3(-1.0f, -.4f), Quaternion.identity).transform.localScale = new Vector3(.8f, .5f);
             Instantiate(poof, transform.position + new Vector3(1.0f,-.4f), Quaternion.identity).transform.localScale = new Vector2(-.8f, .5f);
             return;
         }
@@ -178,8 +179,14 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void OnJump()
     {
+        Instantiate(poof, transform.position + new Vector3(-1.0f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
+        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
+        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
+        
         if(_playerState == PlayerState.Grounded)
         {
+            GetComponent<AudioSource>().Play();
+            
             _playerState = PlayerState.Jumping;
             _startPhaseTime = (float)AudioSettings.dspTime;
         }

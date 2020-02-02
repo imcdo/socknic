@@ -17,6 +17,12 @@ public class SockManager : Singleton<SockManager>
     
     public void InitSockManager()
     {
+        availableSocks.Clear();
+        playerOneSocks.playerQueue.Clear();
+        playerOneSocks.rhythmQueue.Clear();
+        playerTwoSocks.playerQueue.Clear();
+        playerTwoSocks.rhythmQueue.Clear();
+        
         // Init unusedSocks
         availableSocks.AddRange(sockCatalog);
 
