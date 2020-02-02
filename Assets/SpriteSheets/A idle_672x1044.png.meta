@@ -1,55 +1,31 @@
 fileFormatVersion: 2
-guid: a2f3f4813d166ac41b85e291491a696c
+guid: 6ca276b3f51f2364a83f6dc12bcbc30d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5438873167250316050
-    second: A_jump_up_centered_anim_cropped_1088x1893_0
+      213: -6978064554925856112
+    second: A idle_672x1044_0
   - first:
-      213: 8864894478428926934
-    second: A_jump_up_centered_anim_cropped_1088x1893_1
+      213: -6941470174866058518
+    second: A idle_672x1044_1
   - first:
-      213: 3280814808980031890
-    second: A_jump_up_centered_anim_cropped_1088x1893_2
+      213: 3576619759085636056
+    second: A idle_672x1044_2
   - first:
-      213: -9116766839281844123
-    second: A_jump_up_centered_anim_cropped_1088x1893_3
+      213: -3056730632619485428
+    second: A idle_672x1044_3
   - first:
-      213: -140706648958934667
-    second: A_jump_up_centered_anim_cropped_1088x1893_4
+      213: 7937968547667655180
+    second: A idle_672x1044_4
   - first:
-      213: 1489603664495367651
-    second: A_jump_up_centered_anim_cropped_1088x1893_5
+      213: 107591923614966661
+    second: A idle_672x1044_5
   - first:
-      213: 5136378393205756966
-    second: A_jump_up_centered_anim_cropped_1088x1893_6
+      213: 1285871766482004887
+    second: A idle_672x1044_6
   - first:
-      213: 6639582139466086580
-    second: A_jump_up_centered_anim_cropped_1088x1893_7
-  - first:
-      213: -8561447801798709920
-    second: A_jump_up_centered_anim_cropped_1088x1893_0
-  - first:
-      213: -8286542945616055694
-    second: A_jump_up_centered_anim_cropped_1088x1893_1
-  - first:
-      213: -2892703669968091443
-    second: A_jump_up_centered_anim_cropped_1088x1893_2
-  - first:
-      213: -1019167959700948605
-    second: A_jump_up_centered_anim_cropped_1088x1893_3
-  - first:
-      213: 3528826290989738031
-    second: A_jump_up_centered_anim_cropped_1088x1893_4
-  - first:
-      213: -4237253358045207699
-    second: A_jump_up_centered_anim_cropped_1088x1893_5
-  - first:
-      213: -1978887245923742072
-    second: A_jump_up_centered_anim_cropped_1088x1893_6
-  - first:
-      213: -4200182024859033493
-    second: A_jump_up_centered_anim_cropped_1088x1893_7
+      213: 8109194944846785931
+    second: A idle_672x1044_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -146,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_0
+      name: A idle_672x1044_0
       rect:
         serializedVersion: 2
-        x: 213
-        y: 4319
-        width: 559
-        height: 1040
+        x: 0
+        y: 2088
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06d2db2b590af2980800000000000000
-      internalID: -8561447801798709920
+      spriteID: 09a66e7324fe82f90800000000000000
+      internalID: -6978064554925856112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_1
+      name: A idle_672x1044_1
       rect:
         serializedVersion: 2
-        x: 1313
-        y: 4536
-        width: 643
-        height: 778
+        x: 672
+        y: 2088
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +157,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 272398e4819400d80800000000000000
-      internalID: -8286542945616055694
+      spriteID: ae2d32847a1faaf90800000000000000
+      internalID: -6941470174866058518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_2
+      name: A idle_672x1044_2
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 4713
-        width: 774
-        height: 551
+        x: 1344
+        y: 2088
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc6451f965d0bd7d0800000000000000
-      internalID: -2892703669968091443
+      spriteID: 8d941fc98b4b2a130800000000000000
+      internalID: 3576619759085636056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_3
+      name: A idle_672x1044_3
       rect:
         serializedVersion: 2
-        x: 193
-        y: 2508
-        width: 662
-        height: 992
+        x: 0
+        y: 1044
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 389b093f3203bd1f0800000000000000
-      internalID: -1019167959700948605
+      spriteID: c0719a45faf4495d0800000000000000
+      internalID: -3056730632619485428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_4
+      name: A idle_672x1044_4
       rect:
         serializedVersion: 2
-        x: 1113
-        y: 1998
-        width: 735
-        height: 1552
+        x: 672
+        y: 1044
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +220,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f28a08ca0d8e8f030800000000000000
-      internalID: 3528826290989738031
+      spriteID: c0a34f14654592e60800000000000000
+      internalID: 7937968547667655180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_5
+      name: A idle_672x1044_5
       rect:
         serializedVersion: 2
-        x: 2364
-        y: 2250
-        width: 604
-        height: 1220
+        x: 1344
+        y: 1044
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +241,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d63626255804235c0800000000000000
-      internalID: -4237253358045207699
+      spriteID: 58365c3d84e3e7100800000000000000
+      internalID: 107591923614966661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_6
+      name: A idle_672x1044_6
       rect:
         serializedVersion: 2
-        x: 207
-        y: 567
-        width: 637
-        height: 1001
+        x: 0
+        y: 0
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,20 +262,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e0a20d8849984e0800000000000000
-      internalID: -1978887245923742072
+      spriteID: 79b2ddb0f8558d110800000000000000
+      internalID: 1285871766482004887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_7
+      name: A idle_672x1044_7
       rect:
         serializedVersion: 2
-        x: 1274
-        y: 800
-        width: 749
-        height: 793
+        x: 672
+        y: 0
+        width: 672
+        height: 1044
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,8 +283,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b60eb40b3b4f5b5c0800000000000000
-      internalID: -4200182024859033493
+      spriteID: b8d6cf586d5a98070800000000000000
+      internalID: 8109194944846785931
       vertices: []
       indices: 
       edges: []

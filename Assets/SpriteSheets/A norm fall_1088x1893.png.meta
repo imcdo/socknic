@@ -1,55 +1,28 @@
 fileFormatVersion: 2
-guid: a2f3f4813d166ac41b85e291491a696c
+guid: c5a7557b8b3240c4e9585c57b1bee9fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5438873167250316050
-    second: A_jump_up_centered_anim_cropped_1088x1893_0
+      213: 872903490457845751
+    second: A norm fall_1088x1893_0
   - first:
-      213: 8864894478428926934
-    second: A_jump_up_centered_anim_cropped_1088x1893_1
+      213: 2233047090851606980
+    second: A norm fall_1088x1893_1
   - first:
-      213: 3280814808980031890
-    second: A_jump_up_centered_anim_cropped_1088x1893_2
+      213: -1583609837551120022
+    second: A norm fall_1088x1893_2
   - first:
-      213: -9116766839281844123
-    second: A_jump_up_centered_anim_cropped_1088x1893_3
+      213: 7171696243908011636
+    second: A norm fall_1088x1893_3
   - first:
-      213: -140706648958934667
-    second: A_jump_up_centered_anim_cropped_1088x1893_4
+      213: 1654491198580292528
+    second: A norm fall_1088x1893_4
   - first:
-      213: 1489603664495367651
-    second: A_jump_up_centered_anim_cropped_1088x1893_5
+      213: 2574251792096970594
+    second: A norm fall_1088x1893_5
   - first:
-      213: 5136378393205756966
-    second: A_jump_up_centered_anim_cropped_1088x1893_6
-  - first:
-      213: 6639582139466086580
-    second: A_jump_up_centered_anim_cropped_1088x1893_7
-  - first:
-      213: -8561447801798709920
-    second: A_jump_up_centered_anim_cropped_1088x1893_0
-  - first:
-      213: -8286542945616055694
-    second: A_jump_up_centered_anim_cropped_1088x1893_1
-  - first:
-      213: -2892703669968091443
-    second: A_jump_up_centered_anim_cropped_1088x1893_2
-  - first:
-      213: -1019167959700948605
-    second: A_jump_up_centered_anim_cropped_1088x1893_3
-  - first:
-      213: 3528826290989738031
-    second: A_jump_up_centered_anim_cropped_1088x1893_4
-  - first:
-      213: -4237253358045207699
-    second: A_jump_up_centered_anim_cropped_1088x1893_5
-  - first:
-      213: -1978887245923742072
-    second: A_jump_up_centered_anim_cropped_1088x1893_6
-  - first:
-      213: -4200182024859033493
-    second: A_jump_up_centered_anim_cropped_1088x1893_7
+      213: 7208196431686474402
+    second: A norm fall_1088x1893_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -146,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_0
+      name: A norm fall_1088x1893_0
       rect:
         serializedVersion: 2
-        x: 213
-        y: 4319
-        width: 559
-        height: 1040
+        x: 220
+        y: 4360
+        width: 671
+        height: 999
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,103 +133,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06d2db2b590af2980800000000000000
-      internalID: -8561447801798709920
+      spriteID: 7ff30f7891d2d1c00800000000000000
+      internalID: 872903490457845751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_1
+      name: A norm fall_1088x1893_1
       rect:
         serializedVersion: 2
-        x: 1313
-        y: 4536
-        width: 643
-        height: 778
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 272398e4819400d80800000000000000
-      internalID: -8286542945616055694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_2
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 4713
-        width: 774
-        height: 551
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc6451f965d0bd7d0800000000000000
-      internalID: -2892703669968091443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_3
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 2508
-        width: 662
-        height: 992
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 389b093f3203bd1f0800000000000000
-      internalID: -1019167959700948605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_4
-      rect:
-        serializedVersion: 2
-        x: 1113
-        y: 1998
-        width: 735
-        height: 1552
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f28a08ca0d8e8f030800000000000000
-      internalID: 3528826290989738031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_5
-      rect:
-        serializedVersion: 2
-        x: 2364
-        y: 2250
-        width: 604
+        x: 1305
+        y: 4211
+        width: 676
         height: 1220
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -265,20 +154,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d63626255804235c0800000000000000
-      internalID: -4237253358045207699
+      spriteID: 4c1fde87f706dfe10800000000000000
+      internalID: 2233047090851606980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_6
+      name: A norm fall_1088x1893_2
       rect:
         serializedVersion: 2
-        x: 207
-        y: 567
-        width: 637
-        height: 1001
+        x: 2375
+        y: 3865
+        width: 702
+        height: 1582
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88e0a20d8849984e0800000000000000
-      internalID: -1978887245923742072
+      spriteID: a6193f93e33e50ae0800000000000000
+      internalID: -1583609837551120022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A_jump_up_centered_anim_cropped_1088x1893_7
+      name: A norm fall_1088x1893_3
       rect:
         serializedVersion: 2
-        x: 1274
-        y: 800
-        width: 749
-        height: 793
+        x: 137
+        y: 2797
+        width: 915
+        height: 637
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,8 +196,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b60eb40b3b4f5b5c0800000000000000
-      internalID: -4200182024859033493
+      spriteID: 476e32f8cbbf68360800000000000000
+      internalID: 7171696243908011636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A norm fall_1088x1893_4
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 2555
+        width: 674
+        height: 905
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb736faafee5f610800000000000000
+      internalID: 1654491198580292528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A norm fall_1088x1893_5
+      rect:
+        serializedVersion: 2
+        x: 2392
+        y: 2525
+        width: 646
+        height: 945
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2674a5ead5499b320800000000000000
+      internalID: 2574251792096970594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: A norm fall_1088x1893_6
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 532
+        width: 565
+        height: 1042
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa19e5c678a80460800000000000000
+      internalID: 7208196431686474402
       vertices: []
       indices: 
       edges: []

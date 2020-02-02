@@ -47,24 +47,33 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
 
     private void Update() {
-        switch (_playerState){
-            case PlayerState.Jumping:
-                animator.SetBool("Jumping", true);
-                animator.SetFloat("JumpSpeed",(float)(8/60) * (float)(RhythmManager.Instance.currentSong.bpm / 60));
-                Jump();
-                break;
-            case PlayerState.Falling:
-                Fall();
-                break;
-            default:
-                animator.SetBool("Jumping", false);
-                break;
-        }
+        animator.SetFloat("IdleSpeed", .5f * (float)((float)RhythmManager.Instance.currentSong.bpm * fastFall / 60.0f));
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
         
         Move();
+        switch (_playerState){
+            
+            case PlayerState.Falling:
+                animator.SetFloat("FallSpeed", 0.21666666f * (float)((float)RhythmManager.Instance.currentSong.bpm * fastFall / 60.0f));
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", true);
+                Fall();
+                break;
+            case PlayerState.Jumping:
+                
+                animator.SetFloat("JumpSpeed", 2*0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
+                Debug.Log(animator.GetFloat("JumpSpeed"));
+                Jump();
+                break;
+            default:
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", false);
+                break;
+        }
+        
+        
         
     }
     private void Fall(){
@@ -86,6 +95,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void Jump()
     {
+        animator.SetBool("Jumping", true);
+        animator.SetBool("Falling", false);
         _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm *
                     Time.deltaTime;
         if(_activeT >= 1)
