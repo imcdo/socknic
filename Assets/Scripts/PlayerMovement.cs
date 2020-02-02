@@ -71,7 +71,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             case PlayerState.Jumping:
                 
                 animator.SetFloat("JumpSpeed", 2*0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
-                Debug.Log(animator.GetFloat("JumpSpeed"));
+//                Debug.Log(animator.GetFloat("JumpSpeed"));
                 Jump();
                 break;
             default:
@@ -92,21 +92,23 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
         return scoreThresh * _combo;
     }
-    public void UpdateScore(float f)
+    public int UpdateScore(float f)
     {
-        if (f < 1)
+        if (f < 0)
         {
             _combo = 0;
             _scoreUi.SetCombo(_combo);
-            return;
+            return 0;
         }
 
         _combo++;
         // TODO Hi Ian, I added a multiplier to make it seem more pointier sorry if it breaks anything D:
-        _score += CalculateNoteScore(f) * 1000;
+        int noteScore = CalculateNoteScore(f);
+        _score += noteScore * 1000;
         
         _scoreUi.SetCombo(_combo);
         _scoreUi.SetScore(_score);
+        return noteScore / _combo;
     }
     private void Fall()
     {

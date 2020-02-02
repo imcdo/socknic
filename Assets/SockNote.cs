@@ -20,8 +20,19 @@ public class SockNote : MonoBehaviour
     [Header("Donut touch")]
     public float t;
     public float y;
+    
+    [SerializeField]private AudioSource hitSource;
+    [SerializeField]private AudioSource missSource;
 
-    private AudioSource hitSource;
+    [SerializeField] private GameObject hitParticle;
+
+    [SerializeField] private GameObject _badHit;
+    [SerializeField] private GameObject _okHit;
+    [SerializeField] private GameObject _perfHit;
+
+    
+    
+    private Animator _animator;
     private bool _played = false;
     [SerializeField] private AnimationCurve noteFalloffCurve;
     private SpriteRenderer[] _renderers;
@@ -37,8 +48,8 @@ public class SockNote : MonoBehaviour
     private float _scoreValue = 0;
     void Start()
     {
-        hitSource = GetComponent<AudioSource>();
         _renderers = GetComponentsInChildren<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
 
     }
     void Update()
@@ -53,7 +64,13 @@ public class SockNote : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
         
-        _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / (startDsp - killDsp);
+        _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / Mathf.Abs(startDsp - killDsp);
+        
+        
+        if (!hittable && AudioSettings.dspTime > targetDsp)
+        {
+            MissEffect();
+        }
     }
 
        
@@ -75,19 +92,51 @@ public class SockNote : MonoBehaviour
         }
     }
 
+
+    private void MissEffect()
+    {
+        _animator.SetTrigger("Miss");
+        missSource.Play();
+    }
+
+    private void HitEffect(SongProfiler.PlayerNumber hitPlayer)
+    {
+        PlayerMovement player = RhythmManager.Instance.GetPlayerMovement(hitPlayer);
+        player.UpdateSock();
+        Debug.Log(_scoreValue);
+        int val = player.UpdateScore(scoreEvaluationCurve.Evaluate( _scoreValue));
+        Instantiate((val == 1) ? _badHit : (val == 2) ? _okHit : _perfHit, transform.position, Quaternion.identity);
+
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
+        //  TODO score based on accuracy here
+        StartCoroutine(DestroyNote());
+    }
+
+    IEnumerator DestroyNote()
+    {
+        float timeToDestroy = .1f;
+        float clock = 0;
+        
+        Vector3 start = new Vector3(1, 1, 1);
+        Vector3 end = new Vector3(1.3f, 1.3f, 1);
+        while (timeToDestroy > clock)
+        {
+            transform.localScale = Vector3.Lerp(start, end, clock / timeToDestroy);
+            yield return null;
+            clock += Time.deltaTime;
+        }
+        Destroy(gameObject);
+    }
+    
     // Call when this Note is hit by a player
     public void Hit(SongProfiler.PlayerNumber hitPlayer)
     {
         if (hitPlayer == owner && hittable)
         {
-            Debug.Log("boop");
-            PlayerMovement player = RhythmManager.Instance.GetPlayerMovement(hitPlayer);
-            player.UpdateSock();
-            player.UpdateScore(scoreEvaluationCurve.Evaluate( _scoreValue));
-            
-            //  TODO score based on accuracy here
-            Destroy(gameObject);
+            HitEffect(hitPlayer);
         }
+        else
+            MissEffect();;
     }
 
     public void Miss()
@@ -96,11 +145,13 @@ public class SockNote : MonoBehaviour
         player.UpdateSock();
         player.UpdateScore(-1);
         
+        
         //  TODO score based on accuracy here
         
         // Cleanup any effects still in play
         foreach (NoteEffectAnimator effect in effects)
         {
+            
             if (effect != null)
             {
                 Destroy(effect.gameObject);
