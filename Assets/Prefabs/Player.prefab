@@ -360,8 +360,8 @@ MonoBehaviour:
   gotFirstSock: 0
   sockAppearance: {fileID: 1764344720}
   playerNumber: 0
-  maxXSpeed: 12
-  acceleration: 3
+  maxXSpeed: 20
+  acceleration: 20
   friction: 8
   jumpCurve:
     serializedVersion: 2
