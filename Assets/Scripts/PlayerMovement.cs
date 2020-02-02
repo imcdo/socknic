@@ -54,7 +54,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
 
     private void Update() {
-        animator.SetFloat("IdleSpeed", .5f * (float)((float)RhythmManager.Instance.currentSong.bpm * fastFall / 60.0f));
+        animator.SetFloat("IdleSpeed", .5f * (float)((float)RhythmManager.Instance.currentSong.bpm / 60.0f));
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
@@ -70,8 +70,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
                 break;
             case PlayerState.Jumping:
                 
-                animator.SetFloat("JumpSpeed", 2*0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
-//                Debug.Log(animator.GetFloat("JumpSpeed"));
+                animator.SetFloat("JumpSpeed", 0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
+                Debug.Log(animator.GetFloat("JumpSpeed"));
                 Jump();
                 break;
             default:
@@ -145,6 +145,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Falling;
             animator.SetBool("Jumping", false);
+            animator.SetBool("Falling", true);
             _activeT = 0;
             Fall();
             return;
