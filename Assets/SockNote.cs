@@ -10,9 +10,12 @@ public class SockNote : MonoBehaviour
     public float targetDsp;
     public float killDsp;
 
+    public float embiggenScale = 1.2f;
+    
     public GameObject sockAppearance;
 
     public List<NoteEffectAnimator> effects;
+    
 
     [Header("Donut touch")]
     public float t;
@@ -25,6 +28,10 @@ public class SockNote : MonoBehaviour
     public Sock sock;
 
     public SongProfiler.PlayerNumber owner;
+    public SongProfiler.NotePosition notePosition;
+    public GameObject wings;
+
+    public bool hittable = false;
     
     void Start()
     {
@@ -47,17 +54,26 @@ public class SockNote : MonoBehaviour
 
        
 
-    public void SetSock(Sock givenSock)
+    public void SetSock(Sock givenSock, SongProfiler.PlayerNumber playerNumber, SongProfiler.NotePosition notePos)
     {
         sock = givenSock;
         sockAppearance.GetComponent<SpriteRenderer>().sprite = sock.sprite;
+        
+        owner = playerNumber;
+        notePosition = notePos;
 
+        if (notePosition == SongProfiler.NotePosition.Jump)
+        {
+            wings.GetComponent<SpriteRenderer>().enabled = true;
+        } else if (notePosition == SongProfiler.NotePosition.Ground)
+        {
+            wings.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     // Call when this Note is hit by a player
     public void Hit(SongProfiler.PlayerNumber hitPlayer)
     {
-        Debug.Log("someone hit this note");
         if (hitPlayer == owner)
         {
             Debug.Log("boop");
@@ -82,5 +98,62 @@ public class SockNote : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    private void SetHittable(bool canHit)
+    {
+        hittable = canHit;
+
+        if (hittable)
+        {
+            // Make big
+            transform.localScale *= embiggenScale;
+        }
+        else
+        {
+            // Return to size
+            transform.localScale /= embiggenScale;
+        }
+    }
+
+    // TODO FIX
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (notePosition == SongProfiler.NotePosition.Ground)
+        {
+            if (other.collider.gameObject.GetComponent<LowCollider>() != null)
+            {
+                SetHittable(true);
+            }
+        }
+        
+        
+        if (notePosition == SongProfiler.NotePosition.Jump)
+        {
+            if (other.collider.gameObject.GetComponent<HighCollider>() != null)
+            {
+                SetHittable(true);
+            }
+        }
+    }
+    
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (notePosition == SongProfiler.NotePosition.Ground)
+        {
+            if (other.collider.gameObject.GetComponent<LowCollider>() != null)
+            {
+                SetHittable(false);
+            }
+        }
+        
+        
+        if (notePosition == SongProfiler.NotePosition.Jump)
+        {
+            if (other.collider.gameObject.GetComponent<HighCollider>() != null)
+            {
+                SetHittable(false);
+            }
+        }
     }
 }
