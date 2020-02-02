@@ -37,6 +37,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     [SerializeField] float _airControl = 0.5f;
     [SerializeField] int _jumpBeatMultiplier = 2;
     [SerializeField] float _fallmultiplier = 1.1f;
+    [SerializeField] float _lowhitmultiplier = 1.1f;
     [SerializeField] int fastFall = 2;
 
     [SerializeField] private GameObject poof;
@@ -44,7 +45,10 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     public PlayerHitbox hitbox;
     private int _combo = 0;
     private int _score = 0;
+    private float timeForLowHit = 0;
+    private WaitForSeconds lowhitwait;
 
+    
     [SerializeField] private ScoreUI _scoreUi;
     
     private void Start(){
@@ -57,6 +61,10 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     private void Update() {
         animator.SetFloat("IdleSpeed", .5f * (float)((float)RhythmManager.Instance.currentSong.bpm / 60.0f));
+        timeForLowHit = (float)((float)RhythmManager.Instance.currentSong.bpm / (_lowhitmultiplier * 60.0f));
+        animator.SetFloat("LowHitSpeed", timeForLowHit / .217f);
+        
+        lowhitwait = new WaitForSeconds(timeForLowHit);
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
@@ -195,13 +203,17 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         }
     }
 
-    private void OnHit()
+    private IEnumerator OnHit()
     {
         animator.SetBool("Hitting", true);
         GetComponent<AudioSource>().Play();
+        Debug.Log(animator.GetBool("Hitting"));
+        Debug.Log(timeForLowHit);
         hitbox.TryHit(playerNumber);
+        yield return lowhitwait;
         Debug.Log("after tryhit");
         animator.SetBool("Hitting", false);
+        Debug.Log(animator.GetBool("Hitting"));
     }
 
 

@@ -806,6 +806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _scoreUi
       value: 
+      objectReference: {fileID: 1270642648}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: _lowhitmultiplier
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df3d0f9f241d6954bb3b8947ea1950e9, type: 3}
@@ -1288,6 +1293,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06af5b62f8df09a4da9b2b889800fc2c, type: 3}
+--- !u!114 &1270642648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8891092649035255786, guid: 06af5b62f8df09a4da9b2b889800fc2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1270642647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9209b8469d9c3de45b9c5bad7294f48a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1380764188
 GameObject:
   m_ObjectHideFlags: 0
