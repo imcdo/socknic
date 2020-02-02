@@ -5,30 +5,87 @@ using UnityEngine;
 public class SockManager : Singleton<SockManager>
 {
     public List<Sock> sockCatalog;
+
+    public Sock emptySock;
     
     [Header("Donut touch")]
     // Socks that have not been recently used
     public List<Sock> availableSocks;
-    
 
-    // Refill availableSocks with all the possible socks
-    private void ReadyAllSocks()
+    public List<Sock> playerOneSockQueue;
+    public List<Sock> playerTwoSockQueue;
+
+    void Start()
     {
-        availableSocks.Clear();
+        // Init unusedSocks
         availableSocks.AddRange(sockCatalog);
-    }
-
-    public Sock GetRandomReadySock()
-    {
-        // First make sure there's availableSocks
-        if (availableSocks.Count == 0)
+        
+        // Init player's queue
+        for (int i = 0; i < 2; i++)
         {
-            ReadyAllSocks();
+            QueuePlayerSock(SongProfiler.PlayerNumber.Player1);
+            QueuePlayerSock(SongProfiler.PlayerNumber.Player2);
         }
         
-        int randomSockIdx = Random.Range(0, availableSocks.Count - 1);
-        Sock sock = availableSocks[randomSockIdx];
+        RhythmManager.Instance.playerOne.UpdateSock();
+        RhythmManager.Instance.playerTwo.UpdateSock();
+    }
+
+    private Sock GetRandomAvailableSock()
+    {
+        return availableSocks[Random.Range(0, availableSocks.Count - 1)];
+    }
+
+    private void QueuePlayerSock(SongProfiler.PlayerNumber playerNumber)
+    {
+        Sock sock = GetRandomAvailableSock();
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            playerOneSockQueue.Add(sock);
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            playerTwoSockQueue.Add(sock);
+        }
         availableSocks.Remove(sock);
+    }
+
+    // Used to see the first Sock in a player's Queue
+    public Sock PeekPlayerSock(SongProfiler.PlayerNumber playerNumber)
+    {
+        Sock sock = null;
+        
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            sock = playerOneSockQueue[0];
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            sock = playerTwoSockQueue[0];
+        }
+
+        return sock;
+    }
+
+    // Get the first sock of a Player, and maintain its size by adding a new one
+    public Sock PopPlayerSock(SongProfiler.PlayerNumber playerNumber)
+    {
+        Sock sock = PeekPlayerSock(playerNumber);
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            playerOneSockQueue.Remove(sock);
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            playerTwoSockQueue.Remove(sock);
+        }
+        
+        availableSocks.Add(sock);
+        
+        QueuePlayerSock(playerNumber);
 
         return sock;
     }

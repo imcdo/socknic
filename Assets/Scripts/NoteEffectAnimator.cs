@@ -15,7 +15,6 @@ public class NoteEffectAnimator : MonoBehaviour
 
     void Update()
     {
-        if (sockNote == null) Destroy(gameObject);
         float t = ((float) AudioSettings.dspTime - sockNote.startDsp) / (sockNote.targetDsp - sockNote.startDsp);
         
         if (t > 1) Destroy(gameObject);
