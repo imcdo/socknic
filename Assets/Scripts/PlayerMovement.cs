@@ -58,6 +58,10 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         if(_playerState == PlayerState.Falling){
             Fall();
         }
+        if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
+            animator.SetFloat("Horizontal", Math.Abs(m_MovementInput.x));
+        }
+        
         Move();
         
     }
@@ -89,7 +93,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Move()
     {
         float xMod = (m_MovementInput.x * acceleration - friction * xVel ) * RhythmManager.Instance.deltaTime;
-        animator.SetFloat("Horizontal", Math.Abs(m_MovementInput.x));
+        
         if (_playerState != PlayerState.Grounded) xMod *= _airControl;
 
         xVel = Mathf.Clamp(xVel + xMod, -maxXSpeed, maxXSpeed);
