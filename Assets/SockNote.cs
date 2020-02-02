@@ -57,6 +57,7 @@ public class SockNote : MonoBehaviour
     // Call when this Note is hit by a player
     public void Hit(SongProfiler.PlayerNumber hitPlayer)
     {
+        Debug.Log("someone hit this note");
         if (hitPlayer == owner)
         {
             Debug.Log("boop");
