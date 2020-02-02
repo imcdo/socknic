@@ -95,6 +95,7 @@ public class RhythmManager : MonoBehaviour
         // Get info about the song
         currentSong = songConfig;
         _songProfiler.Parse(currentSong.songText);
+        _songProfiler.Song.Sort((Note a, Note b) => (a.noteTime - GetHitTime(a)).CompareTo(b.noteTime - GetHitTime(b)));
     }
 
     // Plays the set song
