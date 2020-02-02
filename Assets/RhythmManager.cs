@@ -101,6 +101,7 @@ public class RhythmManager : MonoBehaviour
     // Plays the set song
     public void StartRound()
     {
+        SockManager.Instance.Test();
         // TODO(Ian) Reset everything so you can click this twice, like reset score.
         
         // Init song info

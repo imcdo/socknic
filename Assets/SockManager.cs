@@ -30,6 +30,11 @@ public class SockManager : Singleton<SockManager>
         RhythmManager.Instance.playerTwo.UpdateSock();
     }
 
+    public void Test()
+    {
+        Debug.Log("hello");
+    }
+
     private Sock GetRandomAvailableSock()
     {
         return availableSocks[Random.Range(0, availableSocks.Count - 1)];
