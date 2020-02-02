@@ -101,6 +101,8 @@ public class RhythmManager : MonoBehaviour
     // Plays the set song
     public void StartRound()
     {
+        // TODO(Ian) Reset everything so you can click this twice, like reset score.
+        
         // Init song info
         beatInterval = 60 / (float) currentSong.bpm;
         musicSource.clip = currentSong.song;
