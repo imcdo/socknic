@@ -41,6 +41,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
+        
         _playerState = PlayerState.Grounded;
         xVel = 0;
     }
@@ -55,10 +56,6 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
                 break;
 
         }
-
-        if(_playerState == PlayerState.Falling){
-            Fall();
-        }
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
             animator.SetFloat("Horizontal", m_MovementInput.x);
         }
@@ -68,9 +65,12 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void Fall(){
         // Debug.Log("falling");
-        _activeT += _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm * 60 *
-                    RhythmManager.Instance.deltaTime * ((m_MovementInput.y < 0) ? fastFall : 1);
-        if(_activeT>=1){
+//        Debug.Log($"Fooll y= {transform.position.y} T: {_activeT}");
+
+        _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm * 
+                    Time.deltaTime * ((m_MovementInput.y < 0) ? fastFall : 1);
+        if(_activeT>=1)
+        {
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Grounded;
             _activeT = 0;
@@ -82,9 +82,10 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void Jump()
     {
-        _activeT += _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm  * 60 *
-                    RhythmManager.Instance.deltaTime;
-        if(_activeT >= 1){
+        _activeT += 60 * _jumpBeatMultiplier / RhythmManager.Instance.currentSong.bpm *
+                    Time.deltaTime;
+        if(_activeT >= 1)
+        {
             _startPhaseTime = (float)AudioSettings.dspTime;
             _playerState = PlayerState.Falling;
             _activeT = 0;
@@ -94,7 +95,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         float adjT = jumpCurve.Evaluate(_activeT);
         float newY =  Mathf.Lerp(groundY, jumpY, adjT);
         transform.position = new Vector2(transform.position.x, newY);
-        //Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {t} adjT: {adjT}");
+//        Debug.Log($"Jumping y= {transform.position.y} newY = {newY} T: {_activeT} adjT: {adjT}");
     }
     private void Move()
     {
