@@ -60,7 +60,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             Fall();
         }
         if(_playerState != PlayerState.Jumping && _playerState != PlayerState.Falling){
-            animator.SetFloat("Horizontal", Math.Abs(m_MovementInput.x));
+            animator.SetFloat("Horizontal", m_MovementInput.x);
         }
         
         Move();
