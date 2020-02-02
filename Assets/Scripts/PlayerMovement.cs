@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
 enum PlayerState : byte { Grounded, Jumping, Falling }
 
+    bool hitting;
+
     [SerializeField] private Animator animator;
 
     public bool gotFirstSock = false;
@@ -71,7 +73,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             case PlayerState.Jumping:
                 
                 animator.SetFloat("JumpSpeed", 0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
-                Debug.Log(animator.GetFloat("JumpSpeed"));
+                //Debug.Log(animator.GetFloat("JumpSpeed"));
                 Jump();
                 break;
             default:
@@ -92,21 +94,23 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
         return scoreThresh * _combo;
     }
-    public void UpdateScore(float f)
+    public int UpdateScore(float f)
     {
-        if (f < 1)
+        if (f < 0)
         {
             _combo = 0;
             _scoreUi.SetCombo(_combo);
-            return;
+            return 0;
         }
 
         _combo++;
         // TODO Hi Ian, I added a multiplier to make it seem more pointier sorry if it breaks anything D:
-        _score += CalculateNoteScore(f) * 1000;
+        int noteScore = CalculateNoteScore(f);
+        _score += noteScore * 1000;
         
         _scoreUi.SetCombo(_combo);
         _scoreUi.SetScore(_score);
+        return noteScore / _combo;
     }
     private void Fall()
     {
@@ -179,9 +183,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void OnJump()
     {
-        Instantiate(poof, transform.position + new Vector3(-1.0f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
-        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
-        Instantiate(poof, transform.position + new Vector3(1.0f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
+        Instantiate(poof, transform.position + new Vector3(-0.6f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
+        Instantiate(poof, transform.position + new Vector3(0.6f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
         
         if(_playerState == PlayerState.Grounded)
         {
@@ -194,8 +197,11 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     private void OnHit()
     {
+        animator.SetBool("Hitting", true);
         GetComponent<AudioSource>().Play();
         hitbox.TryHit(playerNumber);
+        Debug.Log("after tryhit");
+        animator.SetBool("Hitting", false);
     }
 
 
