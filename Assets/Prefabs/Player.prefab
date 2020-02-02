@@ -356,13 +356,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dcb7cc9e9183d4db6a020f0b539307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 426636184458450476}
+  animator: {fileID: 0}
   gotFirstSock: 0
   sockAppearance: {fileID: 1764344720}
   playerNumber: 0
-  maxXSpeed: 8
-  acceleration: 2
-  friction: 1.2
+  maxXSpeed: 12
+  acceleration: 3
+  friction: 8
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -412,7 +412,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _airControl: 0.5
-  _jumpBeatMultiplier: 2
+  _jumpBeatMultiplier: 4
+  fastFall: 2
   hitbox: {fileID: 894419867}
 --- !u!50 &5719478009948546903
 Rigidbody2D:

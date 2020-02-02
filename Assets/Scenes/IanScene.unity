@@ -311,6 +311,8 @@ MonoBehaviour:
   beatInterval: 0
   nextBeatSpawnTime: 0
   audioStartTime: 0
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
 --- !u!82 &367264997
 AudioSource:
   m_ObjectHideFlags: 0
@@ -738,6 +740,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: acceleration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: friction
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df3d0f9f241d6954bb3b8947ea1950e9, type: 3}
 --- !u!4 &1120770098 stripped
@@ -909,7 +921,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84bf567480305e844850ef74fc155abb, type: 2}
   - {fileID: 11400000, guid: 2c82e1fafc3615d49bcfc2e59e6ce798, type: 2}
   - {fileID: 11400000, guid: d62d5742da6e340498daf4ec6f94dd1a, type: 2}
+  emptySock: {fileID: 0}
   availableSocks: []
+  playerOneSockQueue: []
+  playerTwoSockQueue: []
 --- !u!4 &1380764190
 Transform:
   m_ObjectHideFlags: 0
