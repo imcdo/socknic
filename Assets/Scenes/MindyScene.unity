@@ -611,6 +611,16 @@ PrefabInstance:
       propertyPath: _scoreUi
       value: 
       objectReference: {fileID: 741539585}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: maxXSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: acceleration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028612047321706824, guid: df3d0f9f241d6954bb3b8947ea1950e9,
         type: 3}
       propertyPath: m_Actions
@@ -1103,6 +1113,16 @@ PrefabInstance:
       propertyPath: _scoreUi
       value: 
       objectReference: {fileID: 7470252853529323328}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: maxXSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719478009948546908, guid: df3d0f9f241d6954bb3b8947ea1950e9,
+        type: 3}
+      propertyPath: acceleration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9028612047321706824, guid: df3d0f9f241d6954bb3b8947ea1950e9,
         type: 3}
       propertyPath: m_Actions
