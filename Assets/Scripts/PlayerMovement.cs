@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
 enum PlayerState : byte { Grounded, Jumping, Falling }
 
+    bool hitting;
+
     [SerializeField] private Animator animator;
 
     public bool gotFirstSock = false;
@@ -71,7 +73,7 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
             case PlayerState.Jumping:
                 
                 animator.SetFloat("JumpSpeed", 0.13333333f * (float)((float)RhythmManager.Instance.currentSong.bpm * _jumpBeatMultiplier / 60.0f));
-                Debug.Log(animator.GetFloat("JumpSpeed"));
+                //Debug.Log(animator.GetFloat("JumpSpeed"));
                 Jump();
                 break;
             default:
@@ -194,8 +196,11 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     private void OnHit()
     {
+        animator.SetBool("Hitting", true);
         GetComponent<AudioSource>().Play();
         hitbox.TryHit(playerNumber);
+        Debug.Log("after tryhit");
+        animator.SetBool("Hitting", false);
     }
 
 
