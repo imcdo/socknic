@@ -10,6 +10,7 @@ public class PlayerHitbox : MonoBehaviour
     
     public void TryHit(SongProfiler.PlayerNumber playerNumber)
     {
+        Debug.Log("trying to hit something");
         // Show the indicator for a bit
         if (indicatorRoutine != null)
         {
