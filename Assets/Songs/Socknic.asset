@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: sock 1
-  m_EditorClassIdentifier: Assembly-CSharp::Sock
-  id: sock1
-  sprite: {fileID: 21300000, guid: cfc96c8a144fd124aaa360925f53cbb3, type: 3}
+  m_Script: {fileID: 11500000, guid: b319308df2ae60e4fbc9d9272426d83f, type: 3}
+  m_Name: Socknic
+  m_EditorClassIdentifier: 
+  bpm: 150
+  approachRate: 2
+  hp: 1
+  song: {fileID: 8300000, guid: f59f7d591cd23d0438fe3641f35537fb, type: 3}
+  songText: {fileID: 0}

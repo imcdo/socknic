@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
 enum PlayerState : byte { Grounded, Jumping, Falling}
 
+    public bool gotFirstSock = false;
+    public GameObject sockAppearance;
+
     float bpm = 40f; //RhythmManager.Instance.currentSong.bpm;
     float jumpHeight = 40f;//RhythmManager.Instance.jumpY - RhythmManager.Instance.targetY;
     public SongProfiler.PlayerNumber playerNumber; 
@@ -32,9 +35,6 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
         _playerState = PlayerState.Grounded;
     }
-
-
-    
 
     private void Update() {
         switch (_playerState){
@@ -100,6 +100,16 @@ enum PlayerState : byte { Grounded, Jumping, Falling}
     private void OnHit()
     {
         GetComponent<AudioSource>().Play();
-        hitbox.TryHit();
+        hitbox.TryHit(playerNumber);
     }
+
+    // Called when the first sock is no longer relevant, like when it's Hit or Missed
+    public void UpdateSock()
+    {
+        // Pop the existing Sock
+        SockManager.Instance.PopPlayerSock(playerNumber);
+        // Update your appearance
+        sockAppearance.GetComponent<SpriteRenderer>().sprite = SockManager.Instance.PeekPlayerSock(playerNumber).sprite;
+    }
+    
 }

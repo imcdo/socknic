@@ -49,6 +49,9 @@ public class RhythmManager : MonoBehaviour
     public float killY { get; private set; }
     public float jumpY { get; private set; }
 
+    public PlayerMovement playerOne;
+    public PlayerMovement playerTwo;
+
     private SongProfiler _songProfiler;
     private int _noteI;
         private Note _currNote => _songProfiler.Song[_noteI];
@@ -68,7 +71,21 @@ public class RhythmManager : MonoBehaviour
         spawnToKillDistance = Mathf.Abs(killY - spawnY);
         spawnToJumpDistance = Mathf.Abs(jumpY - spawnY);
     }
-    
+
+    public PlayerMovement GetPlayerMovement(SongProfiler.PlayerNumber playerNumber)
+    {
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            return playerOne;
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            return playerTwo;
+        }
+
+        return null;
+    }
     
     void Start()
     {
@@ -147,16 +164,19 @@ public class RhythmManager : MonoBehaviour
                 SockNote note = noteObj.GetComponent<SockNote>();
                 
                 approachCircleObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                note.effects.Add(approachCircleObj.GetComponent<NoteEffectAnimator>());
                 xIndicatorObj.GetComponent<NoteEffectAnimator>().sockNote = note;
+                note.effects.Add(xIndicatorObj.GetComponent<NoteEffectAnimator>());
                 
                 note.startDsp = nextBeatSpawnTime;
                 note.targetDsp = nextBeatSpawnTime + GetHitTime(_currNote);
                 note.killDsp = nextBeatSpawnTime + killTime;
                 
-                // Get the right socks to show and sets owner
-                Sock sock = SockManager.Instance.GetRandomReadySock();
-                note.SetSock(sock);
+                // Sets note owner and gets the right sock from the player's queue
                 note.owner = _currNote.player;
+                
+                Sock sock = SockManager.Instance.PeekPlayerSock(note.owner);
+                note.SetSock(sock);
 
                 _noteI++;
                 if (_noteI < _songProfiler.Song.Count) nextBeatSpawnTime = audioStartTime + _currNote.noteTime- GetHitTime(_currNote);

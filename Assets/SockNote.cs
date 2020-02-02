@@ -12,6 +12,8 @@ public class SockNote : MonoBehaviour
 
     public GameObject sockAppearance;
 
+    public List<NoteEffectAnimator> effects;
+
     [Header("Donut touch")]
     public float t;
     public float y;
@@ -44,10 +46,31 @@ public class SockNote : MonoBehaviour
     }
 
     // Call when this Note is hit by a player
-    public void Hit()
+    public void Hit(SongProfiler.PlayerNumber hitPlayer)
     {
-        Debug.Log("boop");
+        if (hitPlayer == owner)
+        {
+            Debug.Log("boop");
+            RhythmManager.Instance.GetPlayerMovement(hitPlayer).UpdateSock();
+            //  TODO score based on accuracy here
+            Destroy(gameObject);
+        }
+    }
+
+    public void Miss()
+    {
+        RhythmManager.Instance.GetPlayerMovement(owner).UpdateSock();
+        
         //  TODO score based on accuracy here
+        
+        // Cleanup any effects still in play
+        foreach (NoteEffectAnimator effect in effects)
+        {
+            if (effect != null)
+            {
+                Destroy(effect.gameObject);
+            }
+        }
         Destroy(gameObject);
     }
 }

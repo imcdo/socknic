@@ -336,7 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dcb7cc9e9183d4db6a020f0b539307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gotFirstSock: 0
+  sockQueue: []
+  sockAppearance: {fileID: 1764344720}
   playerNumber: 0
+  m_movespeed: 2
   jumpCurve:
     serializedVersion: 2
     m_Curve:

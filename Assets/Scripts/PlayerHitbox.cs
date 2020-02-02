@@ -8,7 +8,7 @@ public class PlayerHitbox : MonoBehaviour
 
     private IEnumerator indicatorRoutine;
     
-    public void TryHit()
+    public void TryHit(SongProfiler.PlayerNumber playerNumber)
     {
         // Show the indicator for a bit
         if (indicatorRoutine != null)
@@ -29,7 +29,7 @@ public class PlayerHitbox : MonoBehaviour
             SockNote note = collider.gameObject.GetComponent<SockNote>();
             if (note != null)
             {
-                note.Hit();
+                note.Hit(playerNumber);
             }
         }
     }
