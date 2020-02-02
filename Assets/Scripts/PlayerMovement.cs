@@ -12,6 +12,9 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     [SerializeField] private Animator animator;
 
+    public static PlayerMovement Player1;
+    public static PlayerMovement Player2;
+    
     public bool gotFirstSock = false;
     public GameObject sockAppearance;
 
@@ -49,15 +52,23 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     private WaitForSeconds lowhitwait;
     private WaitForSeconds highhitwait;
 
-    
-    [SerializeField] private ScoreUI _scoreUi;
-    
+    [HideInInspector] public ScoreUI _scoreUi;
+
+    private void Awake()
+    {
+        if (playerNumber == SongProfiler.PlayerNumber.Player1) PlayerMovement.Player1 = this;
+        if (playerNumber == SongProfiler.PlayerNumber.Player2) PlayerMovement.Player2 = this;
+
+    }
+
     private void Start(){
         groundY = RhythmManager.Instance.targetY + transform.position.y - hitbox.transform.position.y;
         jumpY = RhythmManager.Instance.jumpY + transform.position.y - hitbox.transform.position.y;
         hitting = false;
         _playerState = PlayerState.Grounded;
         xVel = 0;
+
+        _scoreUi = (playerNumber == SongProfiler.PlayerNumber.Player1) ? ScoreUI.p1Score : ScoreUI.p2Score;
     }
 
     private void Update() {
@@ -193,11 +204,10 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
     }
     private void OnJump()
     {
-        Instantiate(poof, transform.position + new Vector3(-0.6f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
-        Instantiate(poof, transform.position + new Vector3(0.6f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);        
-        
         if(_playerState == PlayerState.Grounded)
         {
+            Instantiate(poof, transform.position + new Vector3(-0.6f, -.6f), Quaternion.identity).transform.localScale = new Vector3(.4f, -.6f);
+            Instantiate(poof, transform.position + new Vector3(0.6f,-.6f), Quaternion.identity).transform.localScale = new Vector2(-.4f, -.6f);  
             GetComponent<AudioSource>().Play();
             
             _playerState = PlayerState.Jumping;

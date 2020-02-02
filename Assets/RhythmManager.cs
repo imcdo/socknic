@@ -64,6 +64,9 @@ public class RhythmManager : MonoBehaviour
         killY = kill.transform.position.y;
         jumpY = jump.transform.position.y;
 
+        playerOne = PlayerMovement.Player1;
+        playerTwo = PlayerMovement.Player2;
+        
         // Get info about the note spawn/target
         spawnToTargetDistance = Mathf.Abs(targetY - spawnY);
         spawnToKillDistance = Mathf.Abs(killY - spawnY);
@@ -74,12 +77,12 @@ public class RhythmManager : MonoBehaviour
     {
         if (playerNumber == SongProfiler.PlayerNumber.Player1)
         {
-            return playerOne;
+            return PlayerMovement.Player1;
         }
 
         if (playerNumber == SongProfiler.PlayerNumber.Player2)
         {
-            return playerTwo;
+            return PlayerMovement.Player2;
         }
 
         return null;

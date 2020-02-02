@@ -26,8 +26,8 @@ public class SockManager : Singleton<SockManager>
         // Init unusedSocks
         availableSocks.AddRange(sockCatalog);
 
-        RhythmManager.Instance.playerOne.UpdateSock();
-        RhythmManager.Instance.playerTwo.UpdateSock();
+        PlayerMovement.Player1.UpdateSock();
+        PlayerMovement.Player2.UpdateSock();
     }
 
     public void Test()
