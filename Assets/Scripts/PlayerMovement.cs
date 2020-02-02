@@ -183,6 +183,8 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
         
         if(_playerState == PlayerState.Grounded)
         {
+            GetComponent<AudioSource>().Play();
+            
             _playerState = PlayerState.Jumping;
             _startPhaseTime = (float)AudioSettings.dspTime;
         }
