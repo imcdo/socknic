@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MindyScene.unity
     guid: 6435c0768fb93ce4087d2e1741da0479
-  - enabled: 0
-    path: Assets/Scenes/IanScene2.unity
-    guid: 10ab8c8f486cc72478d0d9e4eae4578c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c96107346c266be40ac1f560d3e73b4b,
       type: 2}
