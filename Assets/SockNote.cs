@@ -55,6 +55,20 @@ public class SockNote : MonoBehaviour
     }
     void Update()
     {
+        Move();
+
+        // Constantly updates score
+        _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / Mathf.Abs(startDsp - killDsp);
+        
+        // It's past the point of no return
+        if (!_postMiss && !hittable && AudioSettings.dspTime > targetDsp)
+        {
+            Miss();
+        }
+    }
+
+    private void Move()
+    {
         // Update Y position based on target
         t = ((float) AudioSettings.dspTime - startDsp) / (killDsp - startDsp);
         y = Mathf.Lerp(RhythmManager.Instance.spawnY,RhythmManager.Instance.killY, t);
@@ -64,15 +78,6 @@ public class SockNote : MonoBehaviour
             sr.color -= new Color(0, 0, 0, 1.0f - noteFalloffCurve.Evaluate(tDeath));
 
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
-        
-        _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / Mathf.Abs(startDsp - killDsp);
-        
-        
-        if (!_postMiss && !hittable && AudioSettings.dspTime > targetDsp)
-        {
-            MissEffect();
-            _postMiss = true;
-        }
     }
 
        
@@ -94,18 +99,10 @@ public class SockNote : MonoBehaviour
         }
     }
 
-
-    private void MissEffect()
-    {
-        _animator.SetTrigger("Miss");
-        missSource.Play();
-    }
-
     private void HitEffect(SongProfiler.PlayerNumber hitPlayer)
     {
         PlayerMovement player = RhythmManager.Instance.GetPlayerMovement(hitPlayer);
         player.UpdateSock();
-        Debug.Log(_scoreValue);
         int val = player.UpdateScore(scoreEvaluationCurve.Evaluate( _scoreValue));
         Instantiate((val == 1) ? _badHit : (val == 2) ? _okHit : _perfHit, transform.position, Quaternion.identity);
 
@@ -138,16 +135,22 @@ public class SockNote : MonoBehaviour
             HitEffect(hitPlayer);
         }
         else
-            MissEffect();;
+            PlayWrongEffect();;
     }
 
+    // Time to Destroy this sock
     public void Miss()
     {
+        _postMiss = true;
+        
+        // Wiggle
+        PlayWrongEffect();
+        
+        // Pop the player sock and score
         PlayerMovement player = RhythmManager.Instance.GetPlayerMovement(owner);
         player.UpdateSock();
         player.UpdateScore(-1);
-        
-        
+
         //  TODO score based on accuracy here
         
         // Cleanup any effects still in play
@@ -159,63 +162,14 @@ public class SockNote : MonoBehaviour
                 Destroy(effect.gameObject);
             }
         }
-        Destroy(gameObject);
+        
+        // Destroy this note
+        StartCoroutine(DestroyNote());
     }
 
-//    private void SetHittable(bool canHit)
-//    {
-//        hittable = canHit;
-//
-//        if (hittable)
-//        {
-//            // Make big
-//            transform.localScale *= embiggenScale;
-//        }
-//        else
-//        {
-//            // Return to size
-//            transform.localScale /= embiggenScale;
-//        }
-//    }
-//
-//    // TODO FIX
-//    private void OnCollisionEnter2D(Collision2D other)
-//    {
-//        if (notePosition == SongProfiler.NotePosition.Ground)
-//        {
-//            if (other.collider.gameObject.GetComponent<LowCollider>() != null)
-//            {
-//                SetHittable(true);
-//            }
-//        }
-//        
-//        
-//        if (notePosition == SongProfiler.NotePosition.Jump)
-//        {
-//            if (other.collider.gameObject.GetComponent<HighCollider>() != null)
-//            {
-//                SetHittable(true);
-//            }
-//        }
-//    }
-//    
-//    private void OnCollisionExit2D(Collision2D other)
-//    {
-//        if (notePosition == SongProfiler.NotePosition.Ground)
-//        {
-//            if (other.collider.gameObject.GetComponent<LowCollider>() != null)
-//            {
-//                SetHittable(false);
-//            }
-//        }
-//        
-//        
-//        if (notePosition == SongProfiler.NotePosition.Jump)
-//        {
-//            if (other.collider.gameObject.GetComponent<HighCollider>() != null)
-//            {
-//                SetHittable(false);
-//            }
-//        }
-//    }
+    private void PlayWrongEffect()
+    {
+        _animator.SetTrigger("Miss");
+        missSource.Play();
+    }
 }
