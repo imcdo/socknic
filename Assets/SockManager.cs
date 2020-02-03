@@ -87,6 +87,25 @@ public class SockManager : Singleton<SockManager>
         return sock;
     }
 
+    public Sock PeakPlayerSock(SongProfiler.PlayerNumber playerNumber)
+    {
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            if (playerOneSocks.playerQueue.Count <= 0) return null;
+            return playerOneSocks.playerQueue[0];
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            if (playerTwoSocks.playerQueue.Count <= 0) return null;
+            return playerTwoSocks.playerQueue[0];
+
+
+        }
+
+        else return null;
+    }
+    
     // Get the first sock of a Player
     public Sock PopPlayerSock(SongProfiler.PlayerNumber playerNumber)
     {

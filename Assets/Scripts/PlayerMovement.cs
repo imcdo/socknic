@@ -54,10 +54,23 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
 
     [HideInInspector] public ScoreUI _scoreUi;
 
+    public static event Action Player1Start = () => { }; 
+    public static event Action Player2Start = () => { }; 
+
     private void Awake()
     {
-        if (playerNumber == SongProfiler.PlayerNumber.Player1) PlayerMovement.Player1 = this;
-        if (playerNumber == SongProfiler.PlayerNumber.Player2) PlayerMovement.Player2 = this;
+        if (playerNumber == SongProfiler.PlayerNumber.Player1)
+        {
+            PlayerMovement.Player1 = this;
+            Player1Start();
+        }
+
+        if (playerNumber == SongProfiler.PlayerNumber.Player2)
+        {
+            PlayerMovement.Player2 = this;
+            Player2Start();
+
+        }
 
     }
 

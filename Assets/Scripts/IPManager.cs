@@ -17,17 +17,25 @@ public class IPManager : MonoBehaviour
         _inputManager = GetComponent<PlayerInputManager>();
         
         Debug.Log("Players: " +_inputManager.playerCount);
-
+        InputDevice[] p1Input;
+        InputDevice[] p2Input;
+        if (Gamepad.all.Count < 2)
+        {;
+            p1Input = new[] {Keyboard.current};
+            p2Input = new[] {Keyboard.current};
+        }
+        else
+        {
+            p1Input = new InputDevice[] {Gamepad.all[0], Keyboard.current};
+            p2Input = new InputDevice[] {Gamepad.all[1], Keyboard.current};
+        }
+        
         _inputManager.playerPrefab = p1Prefab;
-        _inputManager.JoinPlayer(controlScheme: "Player Controls2", pairWithDevices: new InputDevice[] {Gamepad.all[0], Keyboard.current });
+        _inputManager.JoinPlayer(controlScheme: "Player Controls2", pairWithDevices: p1Input);
         
-        
-        Debug.Log("Players: " +_inputManager.playerCount);
-
         _inputManager.playerPrefab = p2Prefab;
-        _inputManager.JoinPlayer(controlScheme: "Player Controls2", pairWithDevices: new InputDevice[] {Gamepad.all[1], Keyboard.current,});
+        _inputManager.JoinPlayer(controlScheme: "Player Controls2", pairWithDevices: p2Input);
 
-        Debug.Log("Players: " +_inputManager.playerCount);
         _inputManager.DisableJoining();
     }
 

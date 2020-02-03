@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "7f36bed9-1910-476b-8b89-7a7c0a1ded90",
-                    "path": "<Keyboard>/numpad8",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -133,7 +133,7 @@
                 {
                     "name": "",
                     "id": "0151bf98-39b8-43af-8f0b-7c029b835c7e",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/numpad8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
