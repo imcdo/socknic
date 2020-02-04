@@ -43,6 +43,7 @@ public class SockNote : MonoBehaviour
     public GameObject wings;
 
     public bool hittable => scoreEvaluationCurve.Evaluate(_scoreValue) > float.Epsilon;
+    public bool hit = false;
 
     public AnimationCurve scoreEvaluationCurve;
     private float _scoreValue = 0;
@@ -61,7 +62,7 @@ public class SockNote : MonoBehaviour
         _scoreValue = 1 - Mathf.Abs((float) AudioSettings.dspTime - targetDsp) / Mathf.Abs(startDsp - killDsp);
         
         // It's past the point of no return
-        if (!_postMiss && !hittable && AudioSettings.dspTime > targetDsp)
+        if (!hit && !_postMiss && !hittable && AudioSettings.dspTime > targetDsp)
         {
             Miss();
         }
@@ -132,6 +133,7 @@ public class SockNote : MonoBehaviour
     {
         if (hitPlayer == owner && hittable)
         {
+            hit = true;
             HitEffect(hitPlayer);
         }
         else
@@ -141,6 +143,8 @@ public class SockNote : MonoBehaviour
     // Time to Destroy this sock
     public void Miss()
     {
+        
+        Debug.Log("note miss");
         _postMiss = true;
         
         // Wiggle

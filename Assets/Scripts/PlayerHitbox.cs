@@ -31,7 +31,7 @@ public class PlayerHitbox : MonoBehaviour
         foreach (Collider2D collider in overlappingColliders)
         {
             SockNote note = collider.gameObject.GetComponent<SockNote>();
-            if (note != null)
+            if (note != null && note.hittable)
             {
                 note.Hit(playerNumber);
                 found = true;
