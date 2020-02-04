@@ -16,4 +16,4 @@ MonoBehaviour:
   approachRate: 2
   hp: 1
   song: {fileID: 8300000, guid: f59f7d591cd23d0438fe3641f35537fb, type: 3}
-  songText: {fileID: 4900000, guid: a60aad75f18524a4d9da6c9fff9fb7f1, type: 3}
+  songText: {fileID: 4900000, guid: a04d0788b01205144be197f2ac954d39, type: 3}
