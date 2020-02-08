@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bff87b34c79ea44b870fb33bdb8035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endScreen: {fileID: 318530578}
+  endScreen: {fileID: 0}
   notePrefab: {fileID: 7931808282081436553, guid: 5c2a7d2bbeb0a1e489fd6e220dbc6d3f,
     type: 3}
   approachCirclePrefab: {fileID: 7576166511588338568, guid: 0de4e62cb668b5c45a72a4a4f4b06a8b,
@@ -1619,7 +1619,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Title
+          m_StringArgument: Start Screen
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1440444832

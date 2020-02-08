@@ -143,8 +143,6 @@ public class SockNote : MonoBehaviour
     // Time to Destroy this sock
     public void Miss()
     {
-        
-        Debug.Log("note miss");
         _postMiss = true;
         
         // Wiggle

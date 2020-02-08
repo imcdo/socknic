@@ -9,7 +9,8 @@ public class RhythmManager : MonoBehaviour
 {
     private static RhythmManager _instance;
     public static RhythmManager Instance => _instance;
-    
+
+    [SerializeField] private GameObject endScreen;
     public GameObject notePrefab;
     public GameObject approachCirclePrefab;
     public GameObject xIndicatorPrefab;
@@ -91,6 +92,7 @@ public class RhythmManager : MonoBehaviour
     void Start()
     {
         if (currentSong != null) _songProfiler.Parse(currentSong.songText);
+        endScreen.SetActive(false);
     }
     
     public void SetSong(SongConfig songConfig)
@@ -104,6 +106,8 @@ public class RhythmManager : MonoBehaviour
     // Plays the set song
     public void StartRound()
     {
+        endScreen.SetActive(false);
+
         SockManager.Instance.Test();
         // TODO(Ian) Reset everything so you can click this twice, like reset score.
         
@@ -138,6 +142,7 @@ public class RhythmManager : MonoBehaviour
 //        }
         
         musicSource.Play();
+        
     }
 
     private float GetHitTime(Note note)
@@ -146,12 +151,21 @@ public class RhythmManager : MonoBehaviour
             return spawnToJumpDistance / currentSong.approachRate;
         return spawnToTargetDistance / currentSong.approachRate;
     }
+
+    private  void EndSong()
+    {
+        songStarted = false;
+        endScreen.SetActive(true);
+        Debug.Log("END");
+
+    }
     
     void Update()
     {
         
         if (songStarted)
         {
+
             float currentDspTime = (float) AudioSettings.dspTime;
             
             // Time to spawn a note!
@@ -191,7 +205,10 @@ public class RhythmManager : MonoBehaviour
                 {
                     // end song
                 }
+                Debug.Log(musicSource.clip.length  + " " + ((float) AudioSettings.dspTime - audioStartTime));
+
             } 
+            if (musicSource.clip.length < currentDspTime - audioStartTime) EndSong();
         }
     }
 }

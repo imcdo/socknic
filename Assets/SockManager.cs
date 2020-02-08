@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class SockManager : Singleton<SockManager>
+public class SockManager : MonoBehaviour
 {
+    private static SockManager _instance;
+    public static SockManager Instance => _instance;
+    
     public List<Sock> sockCatalog;
 
     public Sock emptySock;
@@ -14,7 +19,13 @@ public class SockManager : Singleton<SockManager>
 
     public PlayerSocks playerOneSocks;
     public PlayerSocks playerTwoSocks;
-    
+
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     public void InitSockManager()
     {
         availableSocks.Clear();

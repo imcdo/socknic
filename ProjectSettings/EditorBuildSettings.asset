@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 5fe18c4af26e42a4393fcd2d79f81368
+  - enabled: 1
     path: Assets/Scenes/MindyScene.unity
     guid: 6435c0768fb93ce4087d2e1741da0479
   m_configObjects:

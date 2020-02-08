@@ -16,7 +16,6 @@ public class IPManager : MonoBehaviour
     {
         _inputManager = GetComponent<PlayerInputManager>();
         
-        Debug.Log("Players: " +_inputManager.playerCount);
         InputDevice[] p1Input;
         InputDevice[] p2Input;
         if (Gamepad.all.Count < 2)
