@@ -16,24 +16,30 @@ public class UpcommingSockIcon : MonoBehaviour
     {
         _image = GetComponent<Image>();
         if (_playerNumber == SongProfiler.PlayerNumber.Player1)
-        {
-            PlayerMovement.Player1Start += () =>
-            {
-                _sr = PlayerMovement.Player1.sockAppearance.GetComponent<SpriteRenderer>();
-                StartCoroutine(UpdateTick());
-            };
-        }
+            PlayerMovement.Player1Start += P1StartIcon;
         else
-        {
-            PlayerMovement.Player2Start += () =>
-            {
-                _sr = PlayerMovement.Player2.sockAppearance.GetComponent<SpriteRenderer>();
-                StartCoroutine(UpdateTick());
-            };
-        }
+            PlayerMovement.Player2Start += P2StartIcon;
     }
 
+    private void OnDestroy()
+    {
+        _sr = null;
+        PlayerMovement.Player1Start -= P1StartIcon;
+        PlayerMovement.Player2Start -= P2StartIcon;
+    }
 
+    private void P1StartIcon()
+    {
+        _sr = PlayerMovement.Player1.sockAppearance.GetComponent<SpriteRenderer>();
+        StartCoroutine(UpdateTick());
+    }
+    
+    private void P2StartIcon()
+    {
+        _sr = PlayerMovement.Player2.sockAppearance.GetComponent<SpriteRenderer>();
+        StartCoroutine(UpdateTick());
+    }
+    
     IEnumerator UpdateTick()
     {
         while (true)

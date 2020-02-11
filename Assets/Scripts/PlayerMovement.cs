@@ -115,9 +115,14 @@ enum PlayerState : byte { Grounded, Jumping, Falling }
                 animator.SetBool("Falling", false);
                 break;
         }
-        
-        
-        
+    }
+
+    private void OnDestroy()
+    {
+        Player1 = null;
+        Player2 = null;
+        Player1Start = () => { };
+        Player2Start = () => { };
     }
 
     private int CalculateNoteScore(float rawAccuracy)

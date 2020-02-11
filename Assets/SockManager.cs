@@ -25,6 +25,11 @@ public class SockManager : MonoBehaviour
     {
         _instance = this;
     }
+    
+    private void OnDestroy()
+    {
+        _instance = null;
+    }
 
     public void InitSockManager()
     {

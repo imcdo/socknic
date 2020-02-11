@@ -1,4 +1,5 @@
-﻿    using System.Collections;
+﻿    using System;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
     using UnityEngine.Serialization;
@@ -72,6 +73,11 @@ public class RhythmManager : MonoBehaviour
         spawnToTargetDistance = Mathf.Abs(targetY - spawnY);
         spawnToKillDistance = Mathf.Abs(killY - spawnY);
         spawnToJumpDistance = Mathf.Abs(jumpY - spawnY);
+    }
+
+    private void OnDestroy()
+    {
+        _instance = null;
     }
 
     public PlayerMovement GetPlayerMovement(SongProfiler.PlayerNumber playerNumber)
@@ -205,8 +211,6 @@ public class RhythmManager : MonoBehaviour
                 {
                     // end song
                 }
-                Debug.Log(musicSource.clip.length  + " " + ((float) AudioSettings.dspTime - audioStartTime));
-
             } 
             if (musicSource.clip.length < currentDspTime - audioStartTime) EndSong();
         }
